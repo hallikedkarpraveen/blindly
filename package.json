@@ -1,0 +1,13 @@
+{
+  "name": "blindly-website",
+  "version": "1.0.0",
+  "description": "Blindly official website",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
