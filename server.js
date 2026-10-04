@@ -48,10 +48,27 @@ const server = http.createServer((req, res) => {
     }
     let body = '';
     req.on('data', chunk => { body += chunk; });
-    req.on('end', () => {
+    req.on('end', async () => {
       let parsed = {};
       try { parsed = JSON.parse(body); } catch (_) {}
-      const num = 1420 + Math.floor(Math.random() * 85);
+      const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec';
+      try {
+        const googleRes = await fetch(scriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(parsed),
+          redirect: 'follow'
+        });
+        if (googleRes.ok) {
+          const data = await googleRes.json();
+          res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+          res.end(JSON.stringify({ ok: true, num: Number(data.num) || 4230, existing: !!data.existing, contact: parsed.contact || '', location: parsed.location || '' }));
+          return;
+        }
+      } catch (e) {
+        console.error('Local server Google Sheet forward error:', e);
+      }
+      const num = 4230 + Math.floor(Math.random() * 85);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
       res.end(JSON.stringify({ ok: true, num, contact: parsed.contact || '', location: parsed.location || '' }));
     });

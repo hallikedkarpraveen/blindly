@@ -1,3 +1,5 @@
+const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -20,34 +22,39 @@ export default async function handler(req, res) {
     }
   }
 
-  const contact = (body && body.contact) || '';
-  const source = (body && body.source) || '';
-  const location = (body && body.location) || '';
-  const city = (body && body.city) || '';
+  const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
 
-  // Compute waitlist number
-  const baseNum = 1420;
-  const num = baseNum + Math.floor(Math.random() * 85);
+  try {
+    const googleRes = await fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(body || {}),
+      redirect: 'follow'
+    });
 
-  // Optional: Attempt to forward to external Google Script if configured
-  const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL;
-  if (scriptUrl) {
-    try {
-      await fetch(scriptUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(body)
-      }).catch(() => {});
-    } catch (_) {}
+    if (googleRes.ok) {
+      const data = await googleRes.json();
+      return res.status(200).json({
+        ok: true,
+        num: Number(data.num) || 4230,
+        existing: !!data.existing,
+        contact: body.contact || '',
+        location: body.location || '',
+        city: body.city || ''
+      });
+    }
+  } catch (err) {
+    console.error('Error forwarding to Google Sheet:', err);
   }
 
+  // Graceful fallback if Google Apps Script is momentarily unreachable
+  const fallbackNum = 4230 + Math.floor(Math.random() * 80);
   return res.status(200).json({
     ok: true,
-    num,
-    contact,
-    source,
-    location,
-    city,
-    created_at: new Date().toISOString()
+    num: fallbackNum,
+    existing: false,
+    contact: body.contact || '',
+    location: body.location || '',
+    city: body.city || ''
   });
 }
