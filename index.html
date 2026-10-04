@@ -1180,8 +1180,27 @@ class Component extends DCLogic {
     } catch (e) {}
     return { city: '', region: '', country: '', postal: '', latitude: '', longitude: '', ip: '', location: '' };
   }
+  requestGps() {
+    if (typeof navigator !== 'undefined' && navigator.geolocation) {
+      try {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            if (pos && pos.coords) {
+              if (!this.geoData) this.geoData = {};
+              this.geoData.latitude = String(pos.coords.latitude);
+              this.geoData.longitude = String(pos.coords.longitude);
+            }
+          },
+          () => {},
+          { timeout: 4000, maximumAge: 300000 }
+        );
+      } catch (_) {}
+    }
+  }
+
   openWL(src) {
     this.getGeo();
+    this.requestGps();
     const saved = this.wlSaved();
     (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_opened', { source: src, already_joined: !!saved }));
     this.setState({ wlOpen: true, wlSrc: src, wlErr: '', wlInput: '', wlDoneData: saved });
@@ -1207,22 +1226,8 @@ class Component extends DCLogic {
     if (!email && !phone) { this.setState({ wlErr: 'Enter a valid phone number or email.' }); return; }
     const url = (this.props.waitlistEndpoint || 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec').trim();
     if (!url) { this.setState({ wlErr: 'Waitlist is not connected yet. Add the Google Sheet URL in Tweaks.' }); return; }
-    this.setState({ wlBusy: true, wlErr: '' });
-    let geo = await this.getGeo();
-    if (!geo) geo = {};
-    if (typeof navigator !== 'undefined' && navigator.geolocation) {
-      try {
-        await new Promise((resolve) => {
-          navigator.geolocation.getCurrentPosition((pos) => {
-            if (pos && pos.coords) {
-              geo.latitude = String(pos.coords.latitude);
-              geo.longitude = String(pos.coords.longitude);
-            }
-            resolve();
-          }, () => resolve(), { timeout: 1500, maximumAge: 60000 });
-        });
-      } catch (err) {}
-    }
+
+    const geo = this.geoData || {};
     const locString = geo.location || [geo.city, geo.region, geo.country].filter(Boolean).join(', ') || '';
     const payload = {
       contact: v,
@@ -1246,55 +1251,62 @@ class Component extends DCLogic {
       Longitude: geo.longitude || '',
       ip: geo.ip || ''
     };
-    try {
+
+    // Calculate optimistic waitlist number
+    const existingStored = this.wlSaved();
+    const estNum = (existingStored && existingStored.contact === v && existingStored.num) ? existingStored.num : (4236 + Math.floor(Math.random() * 5));
+    const initialData = { contact: v, num: estNum, location: locString, city: geo.city || '' };
+
+    // INSTANT FEEDBACK (< 50ms): Show confirmation card right away!
+    this.setState({ wlDoneData: initialData, wlBusy: false, wlErr: '' });
+    try { localStorage.setItem(this.wlKey, JSON.stringify(initialData)); } catch (_) {}
+
+    // Synchronize to Google Sheets in background with keepalive
+    (async () => {
       let out = null;
       try {
         const res = await fetch('/api/waitlist', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          keepalive: true
         });
-        if (res.ok) {
-          out = await res.json();
-        }
+        if (res.ok) out = await res.json();
       } catch (_) {}
 
       if (!out || !out.ok) {
         if (url && url !== '/api/waitlist') {
           try {
-            const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+            const res = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(payload),
+              keepalive: true
+            });
             const text = await res.text();
-            try {
-              out = JSON.parse(text);
-            } catch (_) {
-              if (res.ok) out = { ok: true, num: Math.floor(1420 + Math.random() * 85) };
+            try { out = JSON.parse(text); } catch (_) {
+              if (res.ok) out = { ok: true, num: estNum };
             }
           } catch (_) {}
         }
       }
 
-      if (!out || !out.ok) {
-        const existingStored = this.wlSaved();
-        out = { ok: true, num: existingStored?.num || Math.floor(1420 + Math.random() * 85) };
+      if (out && out.ok && out.num) {
+        const confirmedData = { contact: v, num: Number(out.num), location: locString, city: geo.city || '' };
+        try { localStorage.setItem(this.wlKey, JSON.stringify(confirmedData)); } catch (_) {}
+        this.setState({ wlDoneData: confirmedData });
+        (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_joined', {
+          source: this.state.wlSrc || '',
+          contact_type: email ? 'email' : 'phone',
+          waitlist_number: confirmedData.num,
+          existing: !!out.existing,
+          location: locString,
+          city: geo.city || '',
+          region: geo.region || '',
+          country: geo.country || ''
+        }));
       }
-
-      const data = { contact: v, num: Number(out.num), location: locString, city: geo.city || '' };
-      (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_joined', {
-        source: this.state.wlSrc || '',
-        contact_type: email ? 'email' : 'phone',
-        waitlist_number: data.num,
-        existing: !!out.existing,
-        location: locString,
-        city: geo.city || '',
-        region: geo.region || '',
-        country: geo.country || ''
-      }));
-      try { localStorage.setItem(this.wlKey, JSON.stringify(data)); } catch (err) {}
-      this.setState({ wlDoneData: data, wlBusy: false });
-    } catch (err) {
-      (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_error', { source: this.state.wlSrc || '', message: String(err && err.message || err) }));
-      this.setState({ wlBusy: false, wlErr: 'Something went wrong. Please try again.' });
-    }
+    })();
   }
   wlVals() {
     const st = this.state || {};
