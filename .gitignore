@@ -5,3 +5,8 @@ node_modules/
 .env
 .env.local
 *.log
+
+# Audit Reports
+blindly_client_seo_audit.md
+blindly_codebase_full_audit_report.md
+blindly_*.md

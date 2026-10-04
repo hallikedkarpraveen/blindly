@@ -60,6 +60,7 @@ export default async function handler(req, res) {
   const referer = req.headers['referer'] || '';
   if (origin || referer) {
     const isAllowed = [
+      'blindly.date',
       'blindly.in',
       'blindly-website.vercel.app',
       'localhost',
