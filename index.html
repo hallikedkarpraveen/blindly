@@ -1210,20 +1210,17 @@ class Component extends DCLogic {
     this.setState({ wlBusy: true, wlErr: '' });
     let geo = await this.getGeo();
     if (!geo) geo = {};
-    if (typeof navigator !== 'undefined' && navigator.geolocation && navigator.permissions) {
+    if (typeof navigator !== 'undefined' && navigator.geolocation) {
       try {
-        const p = await navigator.permissions.query({ name: 'geolocation' });
-        if (p && p.state === 'granted') {
-          await new Promise((resolve) => {
-            navigator.geolocation.getCurrentPosition((pos) => {
-              if (pos && pos.coords) {
-                geo.latitude = String(pos.coords.latitude);
-                geo.longitude = String(pos.coords.longitude);
-              }
-              resolve();
-            }, () => resolve(), { timeout: 2000, maximumAge: 60000 });
-          });
-        }
+        await new Promise((resolve) => {
+          navigator.geolocation.getCurrentPosition((pos) => {
+            if (pos && pos.coords) {
+              geo.latitude = String(pos.coords.latitude);
+              geo.longitude = String(pos.coords.longitude);
+            }
+            resolve();
+          }, () => resolve(), { timeout: 1500, maximumAge: 60000 });
+        });
       } catch (err) {}
     }
     const locString = geo.location || [geo.city, geo.region, geo.country].filter(Boolean).join(', ') || '';
@@ -1233,12 +1230,20 @@ class Component extends DCLogic {
       page: location.href,
       ua: navigator.userAgent,
       location: locString,
+      Location: locString,
       city: geo.city || '',
+      City: geo.city || '',
       region: geo.region || '',
+      Region: geo.region || '',
+      state: geo.region || '',
+      State: geo.region || '',
       country: geo.country || '',
+      Country: geo.country || '',
       postal: geo.postal || '',
       latitude: geo.latitude || '',
+      Latitude: geo.latitude || '',
       longitude: geo.longitude || '',
+      Longitude: geo.longitude || '',
       ip: geo.ip || ''
     };
     try {

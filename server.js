@@ -52,17 +52,70 @@ const server = http.createServer((req, res) => {
       let parsed = {};
       try { parsed = JSON.parse(body); } catch (_) {}
       const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec';
+
+      const city = parsed.city || 'Bengaluru';
+      const region = parsed.region || 'Karnataka';
+      const country = parsed.country || 'India';
+      const latitude = parsed.latitude || '12.9716';
+      const longitude = parsed.longitude || '77.5946';
+      const ip = parsed.ip || req.socket?.remoteAddress || '127.0.0.1';
+      const locString = parsed.location || [city, region, country].filter(Boolean).join(', ');
+
+      const payloadToGoogle = {
+        ...parsed,
+        contact: parsed.contact || '',
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(parsed.contact || '') ? parsed.contact : (parsed.email || ''),
+        phone: /^\d{10,13}$/.test((parsed.contact || '').replace(/[\s()+-]/g, '')) ? parsed.contact : (parsed.phone || ''),
+        location: locString,
+        Location: locString,
+        city: city,
+        City: city,
+        region: region,
+        Region: region,
+        state: region,
+        State: region,
+        country: country,
+        Country: country,
+        postal: parsed.postal || '',
+        latitude: latitude,
+        Latitude: latitude,
+        lat: latitude,
+        longitude: longitude,
+        Longitude: longitude,
+        lng: longitude,
+        lon: longitude,
+        ip: ip,
+        IP: ip,
+        ipAddress: ip,
+        source: parsed.source || 'Waitlist Modal',
+        Source: parsed.source || 'Waitlist Modal',
+        page: parsed.page || req.headers['referer'] || '',
+        ua: parsed.ua || req.headers['user-agent'] || '',
+        userAgent: parsed.ua || req.headers['user-agent'] || '',
+        timestamp: new Date().toISOString(),
+        Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+      };
+
       try {
         const googleRes = await fetch(scriptUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(parsed),
+          body: JSON.stringify(payloadToGoogle),
           redirect: 'follow'
         });
         if (googleRes.ok) {
           const data = await googleRes.json();
           res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-          res.end(JSON.stringify({ ok: true, num: Number(data.num) || 4230, existing: !!data.existing, contact: parsed.contact || '', location: parsed.location || '' }));
+          res.end(JSON.stringify({
+            ok: true,
+            num: Number(data.num) || 4230,
+            existing: !!data.existing,
+            contact: parsed.contact || '',
+            location: locString,
+            city,
+            region,
+            country
+          }));
           return;
         }
       } catch (e) {
@@ -70,7 +123,15 @@ const server = http.createServer((req, res) => {
       }
       const num = 4230 + Math.floor(Math.random() * 85);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-      res.end(JSON.stringify({ ok: true, num, contact: parsed.contact || '', location: parsed.location || '' }));
+      res.end(JSON.stringify({
+        ok: true,
+        num,
+        contact: parsed.contact || '',
+        location: locString,
+        city,
+        region,
+        country
+      }));
     });
     return;
   }
