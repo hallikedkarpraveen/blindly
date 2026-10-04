@@ -5,7 +5,7 @@
 ## Key facts
 - Category: blind dating app (mobile, iOS and Android)
 - Market: India
-- How it works: choose a mood (for example Coffee or Dinner, A Long Drive, Netflix and Chill), record a 30-second voice intro, talk anonymously, reveal only by mutual consent
+- How it works: choose a mood (for example Coffee or Dinner, A Long Drive, Netflix and Chill), record a 30-second video clip intro (with the option to add voice notes along with it), talk anonymously, reveal only by mutual consent
 - Safety: liveness verification, identities hidden until mutual reveal, screen-recording detection and forensic tracing of leaked videos (in beta), in-app reporting
 - Price: free; passes can be earned by inviting friends
 - Age: 18+ only
