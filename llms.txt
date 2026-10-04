@@ -5,12 +5,12 @@
 ## Key facts
 - Category: blind dating app (mobile, iOS and Android)
 - Market: India
-- How it works: choose a mood (for example Coffee or Dinner, A Long Drive, Netflix and Chill), record a 30-second voice intro, talk anonymously, reveal only by mutual consent
-- Safety: liveness verification, identities hidden until mutual reveal, screen-recording detection and forensic tracing of leaked videos, in-app reporting
+- How it works: choose a mood (for example Coffee or Dinner, A Long Drive, Netflix and Chill), record a 30-second video clip intro (with the option to add voice notes along with it), talk anonymously, reveal only by mutual consent
+- Safety: liveness verification, identities hidden until mutual reveal, screen-recording detection and forensic tracing of leaked videos (in beta), in-app reporting
 - Price: free; passes can be earned by inviting friends
 - Age: 18+ only
 - Company: Ayrav Technologies Private Limited
-- Contact: info@blindly.date · Safety: safety@blindly.date
+- Contact: info@blindly.date · Safety: safety@blindly.date · Careers: career@blindly.date · Press: press@blindly.date
 
 ## Pages
 - [Home](https://blindly.date/): what Blindly is and how blind dating works on it
@@ -18,3 +18,5 @@
 - [Privacy Policy](https://blindly.date/privacy)
 - [Terms of Use](https://blindly.date/terms)
 - [Child Safety Standards](https://blindly.date/csae-policy)
+- [Careers](https://blindly.date/careers): open roles at Blindly
+- [Press](https://blindly.date/press): media inquiries and company info
