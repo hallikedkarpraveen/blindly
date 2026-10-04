@@ -111,6 +111,7 @@ image-slot{touch-action:pan-y;}
           <p style="margin:0;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;">Blindly is launching soon on the App Store and Google Play. Leave your phone number or email and we'll tell you the moment you can go blind.</p>
           <form onSubmit="{{ wlSubmit }}" style="display:flex;flex-direction:column;gap:10px;">
             <input value="{{ wlInput }}" onChange="{{ wlOnInput }}" autofocus="{{ true }}" aria-label="Phone number or email" placeholder="Phone number or email" style="width:100%;height:54px;border-radius:16px;border:2px solid #321525;background:#FFFDFD;color:#321525;padding:0 18px;font-family:'Poppins',sans-serif;font-size:16px;outline:none;" style-focus="border-color:#A93750;box-shadow:0 0 0 4px rgba(169,55,80,.18);">
+            <input name="b_hp_check" value="{{ wlHp }}" onChange="{{ wlOnHp }}" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;pointer-events:none;left:-9999px;width:1px;height:1px;">
             <sc-if value="{{ wlHasErr }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#A93750;">{{ wlErr }}</span></sc-if>
             <button type="submit" style="height:54px;border-radius:999px;border:2px solid #321525;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #A93750;transition:transform .25s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:translateY(-2px);">{{ wlBtn }}</button>
           </form>
@@ -535,7 +536,7 @@ image-slot{touch-action:pan-y;}
   </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;waitlistEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Waitlist&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;waitlistEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/api/waitlist&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Waitlist&quot;}}">
 class Component extends DCLogic {
   rootRef = React.createRef();
   state = { mood: 0 };
@@ -1203,7 +1204,7 @@ class Component extends DCLogic {
     this.requestGps();
     const saved = this.wlSaved();
     (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_opened', { source: src, already_joined: !!saved }));
-    this.setState({ wlOpen: true, wlSrc: src, wlErr: '', wlInput: '', wlDoneData: saved });
+    this.setState({ wlOpen: true, wlSrc: src, wlErr: '', wlInput: '', wlHp: '', wlOpenTime: Date.now(), wlDoneData: saved });
     if (this.lenis) this.lenis.stop();
     document.documentElement.style.overflow = 'hidden';
   }
@@ -1231,6 +1232,8 @@ class Component extends DCLogic {
     const locString = geo.location || [geo.city, geo.region, geo.country].filter(Boolean).join(', ') || '';
     const payload = {
       contact: v,
+      b_hp_check: this.state.wlHp || '',
+      openTime: this.state.wlOpenTime || 0,
       source: this.state.wlSrc || '',
       page: location.href,
       ua: navigator.userAgent,
@@ -1315,6 +1318,8 @@ class Component extends DCLogic {
     return {
       wlOpen: !!st.wlOpen, wlForm: !d, wlDone: !!d, wlSrc: st.wlSrc || 'early access',
       wlBtn: st.wlBusy ? 'Saving your spot…' : 'Get my spot →', wlInput: st.wlInput || '', wlErr: st.wlErr || '', wlHasErr: !!st.wlErr,
+      wlHp: st.wlHp || '',
+      wlOnHp: (e) => this.setState({ wlHp: e.target.value }),
       wlNum: d ? d.num.toLocaleString('en-IN') : '', wlContact: d ? d.contact : '',
       wlOnInput: (e) => this.setState({ wlInput: e.target.value, wlErr: '' }),
       wlSubmit: (e) => this.submitWL(e),

@@ -62,6 +62,7 @@ const server = http.createServer((req, res) => {
       const locString = parsed.location || [city, region, country].filter(Boolean).join(', ');
 
       const payloadToGoogle = {
+        secret: process.env.WAITLIST_SECRET || 'blnd_sec_9e2f4a1c6b8d30e5',
         ...parsed,
         contact: parsed.contact || '',
         email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(parsed.contact || '') ? parsed.contact : (parsed.email || ''),
