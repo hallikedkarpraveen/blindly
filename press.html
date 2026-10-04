@@ -109,7 +109,7 @@ a:hover{color:#96091F;}
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;">
         <a href="mailto:press@blindly.date" style="display:inline-flex;align-items:center;gap:8px;background:#321525;color:#FDF0EA;padding:12px 24px;border-radius:999px;border:2px solid #321525;box-shadow:3px 3px 0 #A93750;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A93750;color:#FDF0EA;">Reach out to our press team ✉</a>
-        <a href="/#meet" style="display:inline-flex;align-items:center;gap:8px;background:#FFD86B;color:#321525;padding:12px 24px;border-radius:999px;border:2px solid #321525;box-shadow:3px 3px 0 #321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#FFE38F;color:#321525;">Join the waitlist →</a>
+        <a id="press-join-wl" data-wl="Press Early Access" href="/?waitlist=true" style="display:inline-flex;align-items:center;gap:8px;background:#FFD86B;color:#321525;padding:12px 24px;border-radius:999px;border:2px solid #321525;box-shadow:3px 3px 0 #321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="background:#FFE38F;color:#321525;">Join the waitlist →</a>
       </div>
     </section>
 
@@ -193,7 +193,7 @@ a:hover{color:#96091F;}
         <nav style="display:flex;flex-direction:column;gap:2px;font-family:'Poppins',sans-serif;font-size:16px;">
           <span style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#F498AA;padding-bottom:6px;">Company</span>
           <a href="/#meet" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Meet Blindly</a>
-          <a href="/" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Careers</a>
+          <a href="/careers" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Careers</a>
           <a href="/press" style="color:#FFD86B;padding:8px 0;font-weight:600;" style-hover="color:#FFD86B;">Press</a>
           <a href="mailto:info@blindly.date" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Contact</a>
         </nav>
@@ -211,12 +211,196 @@ a:hover{color:#96091F;}
           <a href="/privacy" style="color:#FBD4DB;" style-hover="color:#FFD86B;">Privacy Policy</a>
           <a href="/terms" style="color:#FBD4DB;" style-hover="color:#FFD86B;">Terms of Use</a>
           <a href="/safety" style="color:#FBD4DB;" style-hover="color:#FFD86B;">Safety</a>
-          <a href="/resources" style="color:#FBD4DB;" style-hover="color:#FFD86B;">Resources</a>
+          <a href="/careers" style="color:#FBD4DB;" style-hover="color:#FFD86B;">Careers</a>
+          <a href="/press" style="color:#FBD4DB;" style-hover="color:#FFD86B;">Press</a>
         </div>
       </div>
     </div>
   </footer>
 </div>
-</x-dc>
+
+<!-- Waitlist Modal for Press Page -->
+<div id="wl-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(50,21,37,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
+  <div role="dialog" aria-modal="true" aria-label="Join the Blindly waitlist" style="position:relative;width:min(460px,100%);background:#FDF0EA;color:#321525;border:2px solid #321525;border-radius:28px;box-shadow:10px 10px 0 #A93750;padding:clamp(24px,4vw,36px);display:flex;flex-direction:column;gap:16px;">
+    <button id="wl-close-btn" aria-label="Close" style="position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1.5px solid #321525;background:#FFFDFD;color:#321525;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
+    <div id="wl-form-view" style="display:flex;flex-direction:column;gap:16px;">
+      <span id="wl-src-tag" style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ press early access</span>
+      <h3 style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(30px,4vw,40px);line-height:1;letter-spacing:-.045em;">Join the waitlist</h3>
+      <p style="margin:0;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;">Blindly is launching soon on the App Store and Google Play. Leave your phone number or email and we'll tell you the moment you can go blind.</p>
+      <form id="wl-form" style="display:flex;flex-direction:column;gap:10px;">
+        <input id="wl-input" aria-label="Phone number or email" placeholder="Phone number or email" style="width:100%;height:54px;border-radius:16px;border:2px solid #321525;background:#FFFDFD;color:#321525;padding:0 18px;font-family:'Poppins',sans-serif;font-size:16px;outline:none;">
+        <input name="b_hp_check" id="wl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;pointer-events:none;left:-9999px;width:1px;height:1px;">
+        <div id="wl-err" style="display:none;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#A93750;"></div>
+        <button id="wl-submit-btn" type="submit" style="height:54px;border-radius:999px;border:2px solid #321525;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #A93750;transition:transform .25s cubic-bezier(.34,1.56,.64,1);">Join the waitlist →</button>
+      </form>
+      <span style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.5;color:#7A4A5E;">By joining, you agree to be contacted about Blindly's launch. See our <a href="/privacy" style="color:#A93750;font-weight:600;text-decoration:underline;">Privacy Policy</a>. No spam.</span>
+    </div>
+    <div id="wl-done-view" style="display:none;flex-direction:column;gap:16px;">
+      <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ you're in</span>
+      <span style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#A93750;">Your spot on the waitlist</span>
+      <span id="wl-num" style="font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(64px,12vw,96px);line-height:.9;letter-spacing:-.06em;color:#321525;font-variant-numeric:tabular-nums;">#4240</span>
+      <p id="wl-contact-msg" style="margin:0;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;">We'll reach you as soon as Blindly is live on the App Store and Google Play.</p>
+      <button id="wl-done-btn" style="height:52px;border-radius:999px;border:2px solid #321525;background:#FFD86B;color:#321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #321525;">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var modal = document.getElementById('wl-modal');
+  var closeBtn = document.getElementById('wl-close-btn');
+  var doneBtn = document.getElementById('wl-done-btn');
+  var formView = document.getElementById('wl-form-view');
+  var doneView = document.getElementById('wl-done-view');
+  var form = document.getElementById('wl-form');
+  var input = document.getElementById('wl-input');
+  var hp = document.getElementById('wl-hp');
+  var err = document.getElementById('wl-err');
+  var submitBtn = document.getElementById('wl-submit-btn');
+  var tag = document.getElementById('wl-src-tag');
+  var numEl = document.getElementById('wl-num');
+  var contactMsg = document.getElementById('wl-contact-msg');
+  var currentSource = 'Press Page';
+  var openTime = Date.now();
+  var geoData = {};
+
+  // Fetch Geo in background
+  fetch('/api/geo').then(function(r){ return r.json(); }).then(function(d){ geoData = d || {}; }).catch(function(){});
+
+  function getStored(){
+    try {
+      var raw = localStorage.getItem('blindly-wl');
+      if (raw) return JSON.parse(raw);
+    } catch(e){}
+    return null;
+  }
+
+  function setStored(obj){
+    try { localStorage.setItem('blindly-wl', JSON.stringify(obj)); } catch(e){}
+  }
+
+  function openModal(src){
+    currentSource = src || 'Press Page';
+    openTime = Date.now();
+    var stored = getStored();
+    if (tag) tag.textContent = '✦ ' + currentSource.toLowerCase();
+    if (stored && stored.num) {
+      if (numEl) numEl.textContent = '#' + stored.num;
+      if (contactMsg) contactMsg.innerHTML = 'We will reach you at <strong style="font-weight:700;">' + (stored.contact || 'your contact') + '</strong> as soon as Blindly is live.';
+      formView.style.display = 'none';
+      doneView.style.display = 'flex';
+    } else {
+      formView.style.display = 'flex';
+      doneView.style.display = 'none';
+      if (err) { err.style.display = 'none'; err.textContent = ''; }
+      if (input) { input.value = ''; setTimeout(function(){ input.focus(); }, 100); }
+    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    if (window.posthog && window.posthog.capture) {
+      window.posthog.capture('waitlist_opened', { source: currentSource, page: 'press' });
+    }
+  }
+
+  function closeModal(){
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.onclick = closeModal;
+  if (doneBtn) doneBtn.onclick = closeModal;
+  if (modal) modal.onclick = function(e){ if (e.target === modal) closeModal(); };
+  window.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal.style.display === 'flex') closeModal(); });
+
+  document.querySelectorAll('[data-wl]').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal(el.getAttribute('data-wl') || 'Waitlist');
+    });
+  });
+
+  if (form) {
+    form.onsubmit = function(e){
+      e.preventDefault();
+      var v = (input.value || '').trim();
+      var email = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      var phone = /^\d{10,13}$/.test(v.replace(/[\s()+-]/g, ''));
+      if (!email && !phone) {
+        err.textContent = 'Enter a valid phone number or email.';
+        err.style.display = 'block';
+        return;
+      }
+      err.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining…';
+
+      var locStr = geoData.location || [geoData.city, geoData.region, geoData.country].filter(Boolean).join(', ') || '';
+      var payload = {
+        contact: v,
+        b_hp_check: (hp && hp.value) || '',
+        openTime: openTime,
+        source: currentSource,
+        page: location.href,
+        ua: navigator.userAgent,
+        location: locStr,
+        Location: locStr,
+        city: geoData.city || '',
+        City: geoData.city || '',
+        region: geoData.region || '',
+        Region: geoData.region || '',
+        state: geoData.region || '',
+        State: geoData.region || '',
+        country: geoData.country || '',
+        Country: geoData.country || '',
+        postal: geoData.postal || '',
+        latitude: geoData.latitude || '',
+        Latitude: geoData.latitude || '',
+        longitude: geoData.longitude || '',
+        Longitude: geoData.longitude || '',
+        ip: geoData.ip || ''
+      };
+
+      var estNum = 4242 + Math.floor(Math.random() * 5);
+      var storedData = { contact: v, num: estNum, joinedAt: new Date().toISOString() };
+      setStored(storedData);
+
+      // Optimistic transition
+      if (numEl) numEl.textContent = '#' + estNum;
+      if (contactMsg) contactMsg.innerHTML = 'We will reach you at <strong style="font-weight:700;">' + v + '</strong> as soon as Blindly is live.';
+      formView.style.display = 'none';
+      doneView.style.display = 'flex';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join the waitlist →';
+
+      // Send to server in background
+      var scriptUrl = 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec';
+      fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function(){
+        // Fallback to Apps Script directly
+        return fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+      }).then(function(res){
+        if (res && res.json) return res.json();
+      }).then(function(d){
+        if (d && d.num) {
+          storedData.num = d.num;
+          setStored(storedData);
+          if (numEl) numEl.textContent = '#' + d.num;
+        }
+      }).catch(function(){});
+
+      if (window.gtag) { gtag('event', 'waitlist_join', { event_category: 'Waitlist', event_label: currentSource }); }
+      if (window.posthog && window.posthog.capture) { posthog.capture('waitlist_joined', { contact_type: email ? 'email' : 'phone', source: currentSource, est_num: estNum }); }
+    };
+  }
+})();
+</script>
 </body>
 </html>

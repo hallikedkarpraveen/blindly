@@ -513,7 +513,7 @@ image-slot{touch-action:pan-y;}
         <nav style="display:flex;flex-direction:column;gap:2px;font-family:'Poppins',sans-serif;font-size:16px;">
           <span style="font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#F498AA;padding-bottom:6px;">Company</span>
           <a href="#meet" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Meet Blindly</a>
-          <a href="#top" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Careers</a>
+          <a href="/careers" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Careers</a>
           <a href="/press" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Press</a>
           <a href="#top" style="color:#FDF0EA;padding:8px 0;" style-hover="color:#FFD86B;">Contact</a>
         </nav>
@@ -632,6 +632,13 @@ class Component extends DCLogic {
     root.addEventListener('click', this.onWLClick, true);
     this.onWLKey = (e) => { if (e.key === 'Escape' && this.state && this.state.wlOpen) this.closeWL(); };
     window.addEventListener('keydown', this.onWLKey);
+    try {
+      const sp = new URLSearchParams(window.location.search);
+      if (window.location.hash === '#waitlist' || sp.has('waitlist') || sp.has('join') || sp.get('openWaitlist') === '1') {
+        const src = sp.get('src') || sp.get('source') || (window.location.hash === '#waitlist' ? 'Direct link' : 'Waitlist');
+        setTimeout(() => this.openWL(src), 350);
+      }
+    } catch (_) {}
     const loader = root.querySelector('[data-loader]');
     this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (this.reduce) { loader && loader.remove(); return; }
