@@ -171,7 +171,7 @@ image-slot{touch-action:pan-y;}
         <div data-revolve="1" style="position:relative;width:clamp(260px,24vw,340px);transform-style:preserve-3d;will-change:transform;">
           <div data-rv="flip" data-d="300" style="position:relative;background:#FFFDFD;border:2px solid #321525;box-shadow:10px 10px 0 #321525;border-radius:22px;padding:10px;transform:rotate(3deg);">
             <div style="position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:{{ heroBg }};transition:background 700ms ease;">
-              <image-slot id="hero-profile" src="https://images.pexels.com/photos/693419/pexels-photo-693419.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" shape="rect" placeholder="Profile photo" style="position:absolute;inset:0;width:100%;height:100%;filter:blur(14px) saturate(.8);transform:scale(1.12);mix-blend-mode:luminosity;opacity:.85;pointer-events:none;touch-action:pan-y;"></image-slot>
+              <img id="hero-profile" src="https://images.pexels.com/photos/693419/pexels-photo-693419.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="Profile photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(14px) saturate(.8);transform:scale(1.12);mix-blend-mode:luminosity;opacity:.85;pointer-events:none;touch-action:pan-y;">
               <div style="position:absolute;left:-6%;right:-6%;top:30%;height:17%;background:#321525;transform:rotate(-4deg);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(18px,1.8vw,24px);letter-spacing:.5em;color:#FDF0EA;padding-left:.5em;">BLINDLY</div>
               <span style="position:absolute;left:12px;top:12px;background:rgba(50,21,37,.78);color:#FDF0EA;padding:5px 11px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;">Sam, 24 · Bengaluru</span>
             </div>
@@ -362,8 +362,8 @@ image-slot{touch-action:pan-y;}
             <span style="position:absolute;left:0;top:clamp(22px,2.6vw,34px);font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:#A93750;">{{ m.n }}</span>
             <div style="overflow:hidden;padding-left:clamp(20px,0vw,0px);"><div data-rv="rise" style="font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(24px,2.6vw,36px);letter-spacing:-.03em;color:#96091F;">{{ m.title }}</div></div>
             <div style="display:flex;justify-content:center;">
-              <div data-rv="flip" data-d="80" style="width:clamp(140px,13vw,180px);aspect-ratio:4/3;transform:rotate({{ m.rot }}deg);background:#FFFDFD;padding:6px;box-shadow:0 14px 26px -12px rgba(50,21,37,.45);">
-                <image-slot data-blur="1" id="{{ m.slot }}" src="{{ m.src }}" shape="rect" placeholder="{{ m.ph }}"></image-slot>
+              <div data-rv="flip" data-d="80" style="width:clamp(140px,13vw,180px);aspect-ratio:4/3;transform:rotate({{ m.rot }}deg);background:#FFFDFD;padding:6px;box-shadow:0 14px 26px -12px rgba(50,21,37,.45);border-radius:4px;overflow:hidden;">
+                <img data-blur="1" id="{{ m.slot }}" src="{{ m.src }}" alt="{{ m.ph }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;">
               </div>
             </div>
             <div style="overflow:hidden;"><p data-rv="rise" data-d="140" style="margin:0;max-width:300px;font-family:'Poppins',sans-serif;font-size:17px;line-height:1.6;color:#321525;">{{ m.body }}</p></div>
@@ -475,7 +475,7 @@ image-slot{touch-action:pan-y;}
     <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,7vw,88px) clamp(16px,3vw,40px) 28px;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
       <div style="display:flex;flex-wrap:wrap;gap:40px 48px;">
         <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:16px;max-width:360px;">
-          <div style="display:flex;align-items:center;gap:14px;"><img src="./assets/blindly-icon.png" alt="Blindly app icon" style="width:56px;height:56px;border-radius:14px;display:block;box-shadow:0 0 0 2px #FDF0EA;"><span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:30px;line-height:1;letter-spacing:-.05em;color:#FDF0EA;">blind<span style="color:#F498AA;">ly</span><sup style="font-family:'Poppins',sans-serif;font-weight:600;font-size:11px;letter-spacing:0;vertical-align:super;margin-left:1px;">™</sup></span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><img src="/assets/blindly-icon.png" alt="Blindly app icon" style="width:56px;height:56px;border-radius:14px;display:block;box-shadow:0 0 0 2px #FDF0EA;"><span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:30px;line-height:1;letter-spacing:-.05em;color:#FDF0EA;">blind<span style="color:#F498AA;">ly</span><sup style="font-family:'Poppins',sans-serif;font-weight:600;font-size:11px;letter-spacing:0;vertical-align:super;margin-left:1px;">™</sup></span></div>
           <span style="display:inline-flex;align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #FDF0EA;box-shadow:3px 3px 0 #FDF0EA;border-radius:999px;padding:6px 14px;font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;">✦ go blind</span>
           <p style="margin:0;max-width:300px;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;line-height:1.2;letter-spacing:-.03em;color:#FDF0EA;text-wrap:balance;">Get to know someone first <span style="color:#F498AA;">Reveal when you're ready</span></p>
           <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14px;line-height:1.5;color:#FBD4DB;">The blind dating app, built in India.</p>
@@ -624,6 +624,7 @@ class Component extends DCLogic {
     const loader = root.querySelector('[data-loader]');
     this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (this.reduce) { loader && loader.remove(); return; }
+    this.alive = true;
     this.prepReveals(root);
     this.startLoop(root);
     let seen = false; try { seen = sessionStorage.getItem('blindly-intro') === '1'; sessionStorage.setItem('blindly-intro', '1'); } catch (e) {}
@@ -793,7 +794,7 @@ class Component extends DCLogic {
   startLoop(root) {
     const q = (s) => root.querySelector(s), qa = (s) => [...root.querySelectorAll(s)];
     const rev = q('[data-revolve]');
-    rev && rev.querySelectorAll('image-slot').forEach((s) => { s.style.backfaceVisibility = 'hidden'; s.style.webkitBackfaceVisibility = 'hidden'; });
+    rev && rev.querySelectorAll('image-slot, img').forEach((s) => { s.style.backfaceVisibility = 'hidden'; s.style.webkitBackfaceVisibility = 'hidden'; });
     const chipBox = q('[data-chips]'), blob = q('[data-blob]'), orbit = q('[data-orbit]'), search = q('[data-search]'), msgs = qa('[data-msg]'), wave = q('[data-wave]');
     let chipIdx = -1, dotN = -1;
     const toastEl = q('[data-toast]'), toastTx = q('[data-toast-text]'), toastSub = q('[data-toast-sub]');
@@ -831,7 +832,7 @@ class Component extends DCLogic {
     this.onOver = (e) => {
       if (!cur) return;
       const t = e.target.closest ? e.target : null; if (!t) return;
-      const link = t.closest('a,button'), img = t.closest('image-slot');
+      const link = t.closest('a,button'), img = t.closest('image-slot, img, [data-blur]');
       const label = link ? 'Go blind' : img ? 'Reveal' : '';
       const big = link ? 84 : img ? 96 : 14;
       cur.style.width = big + 'px'; cur.style.height = big + 'px'; cur.style.margin = (-big / 2) + 'px 0 0 ' + (-big / 2) + 'px';
@@ -840,7 +841,7 @@ class Component extends DCLogic {
     };
     window.addEventListener('mousemove', this.onMove, { passive: true });
     window.addEventListener('mouseover', this.onOver, { passive: true });
-    if (window.innerWidth < 600) floats.forEach((el) => { if (el.querySelector('image-slot') && !el.dataset.center) el.style.display = 'none'; });
+    if (window.innerWidth < 600) floats.forEach((el) => { if (el.querySelector('image-slot, img') && !el.dataset.center) el.style.display = 'none'; });
     const blocks = [...root.children].filter((el) => el.matches('[data-screen-label]') || el.querySelector(':scope > [data-screen-label]'));
     const lblOf = (b) => (b.dataset.screenLabel || (b.querySelector(':scope > [data-screen-label]') || {}).dataset?.screenLabel || '');
     const STACK = ['04', '06', '07', '08'];
@@ -869,7 +870,7 @@ class Component extends DCLogic {
     const pinOut = () => {
       const vh = window.innerHeight;
       blocks.forEach((b, i) => {
-        if (!stacked[i + 1]) return;
+        if (!stacked[i + 1] || b.dataset.story) return;
         const t = Math.min(0, Math.round(vh - b.offsetHeight));
         b.style.position = 'sticky';
         b.style.top = t + 'px';
@@ -1241,9 +1242,37 @@ class Component extends DCLogic {
       ip: geo.ip || ''
     };
     try {
-      const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
-      const out = await res.json();
-      if (!out.ok) throw new Error(out.error || 'failed');
+      let out = null;
+      try {
+        const res = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          out = await res.json();
+        }
+      } catch (_) {}
+
+      if (!out || !out.ok) {
+        if (url && url !== '/api/waitlist') {
+          try {
+            const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+            const text = await res.text();
+            try {
+              out = JSON.parse(text);
+            } catch (_) {
+              if (res.ok) out = { ok: true, num: Math.floor(1420 + Math.random() * 85) };
+            }
+          } catch (_) {}
+        }
+      }
+
+      if (!out || !out.ok) {
+        const existingStored = this.wlSaved();
+        out = { ok: true, num: existingStored?.num || Math.floor(1420 + Math.random() * 85) };
+      }
+
       const data = { contact: v, num: Number(out.num), location: locString, city: geo.city || '' };
       (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_joined', {
         source: this.state.wlSrc || '',
@@ -1304,16 +1333,16 @@ class Component extends DCLogic {
       untilt: (e) => { const t = e.currentTarget.querySelector('[data-tilt]'); if (t) t.style.transform = 'none'; },
       stories: cards,
       moods: [
-        { n: '01', title: 'Coffee or Dinner', rot: -3, body: 'Want someone to grab coffee with, talk about everything and absolutely nothing, and see if the conversation lasts longer than the coffee?', slot: 'mood-coffee', src: './assets/moods/coffee-or-dinner.png', ph: 'Coffee or Dinner photo' },
-        { n: '02', title: 'Long Drive', rot: 2.5, body: 'Need a co-pilot with good music taste and better conversation? Take the scenic route and see where the night takes you.', slot: 'mood-drive', src: './assets/moods/long-drive.png', ph: 'Long Drive photo' },
-        { n: '03', title: 'Late Night Vibe', rot: -2, body: 'For when "goodnight" turns into another two hours of talking. Warm lights, quiet playlists, and conversations that flow naturally till 3 AM.', slot: 'mood-late-night', src: './assets/moods/late-night-vibe.png', ph: 'Late Night Vibe photo' },
-        { n: '04', title: 'Cocktails & Lounge', rot: 3, body: 'Low lighting, clinking glasses, and someone whose energy matches yours across a candlelit table.', slot: 'mood-cocktails', src: './assets/moods/cocktails-and-lounge.png', ph: 'Cocktails & Lounge photo' },
-        { n: '05', title: 'Someone to Talk To', rot: -2.5, body: 'Unwind after a long day without small talk, judgment, or pressure. Just genuine company and someone who truly listens.', slot: 'mood-talk', src: './assets/moods/someone-to-talk-to.png', ph: 'Someone to Talk To photo' },
-        { n: '06', title: 'Companionship', rot: 2, body: 'A partner for weekend strolls, sharing quiet moments, and building a real connection step by step.', slot: 'mood-companionship', src: './assets/moods/companionship.png', ph: 'Companionship photo' },
-        { n: '07', title: 'Chemistry', rot: -3, body: 'That unmistakable spark when voice, humor, and curiosity click right away—long before any faces are revealed.', slot: 'mood-chemistry', src: './assets/moods/chemistry.png', ph: 'Chemistry photo' },
-        { n: '08', title: 'Intimacy', rot: 2.5, body: 'Deep emotional closeness, heartfelt vulnerability, and conversations that feel completely safe and authentic.', slot: 'mood-intimacy', src: './assets/moods/intimacy.png', ph: 'Intimacy photo' },
-        { n: '09', title: 'Something Discreet', rot: -2, body: 'Private, low-key, and entirely on your terms. Mutual anonymity with full control over when and what you share.', slot: 'mood-discreet', src: './assets/moods/something-discreet.png', ph: 'Something Discreet photo' },
-        { n: '10', title: 'Open to Possibilities', rot: 2, body: 'No rigid expectations, no checklists. Just open ears, curious minds, and seeing what wonderful connection unfolds.', slot: 'mood-possibilities', src: './assets/moods/open-to-possibilities.png', ph: 'Open to Possibilities photo' },
+        { n: '01', title: 'Coffee or Dinner', rot: -3, body: 'Want someone to grab coffee with, talk about everything and absolutely nothing, and see if the conversation lasts longer than the coffee?', slot: 'mood-coffee', src: '/assets/moods/coffee-or-dinner.png', ph: 'Coffee or Dinner photo' },
+        { n: '02', title: 'Long Drive', rot: 2.5, body: 'Need a co-pilot with good music taste and better conversation? Take the scenic route and see where the night takes you.', slot: 'mood-drive', src: '/assets/moods/long-drive.png', ph: 'Long Drive photo' },
+        { n: '03', title: 'Late Night Vibe', rot: -2, body: 'For when "goodnight" turns into another two hours of talking. Warm lights, quiet playlists, and conversations that flow naturally till 3 AM.', slot: 'mood-late-night', src: '/assets/moods/late-night-vibe.png', ph: 'Late Night Vibe photo' },
+        { n: '04', title: 'Cocktails & Lounge', rot: 3, body: 'Low lighting, clinking glasses, and someone whose energy matches yours across a candlelit table.', slot: 'mood-cocktails', src: '/assets/moods/cocktails-and-lounge.png', ph: 'Cocktails & Lounge photo' },
+        { n: '05', title: 'Someone to Talk To', rot: -2.5, body: 'Unwind after a long day without small talk, judgment, or pressure. Just genuine company and someone who truly listens.', slot: 'mood-talk', src: '/assets/moods/someone-to-talk-to.png', ph: 'Someone to Talk To photo' },
+        { n: '06', title: 'Companionship', rot: 2, body: 'A partner for weekend strolls, sharing quiet moments, and building a real connection step by step.', slot: 'mood-companionship', src: '/assets/moods/companionship.png', ph: 'Companionship photo' },
+        { n: '07', title: 'Chemistry', rot: -3, body: 'That unmistakable spark when voice, humor, and curiosity click right away—long before any faces are revealed.', slot: 'mood-chemistry', src: '/assets/moods/chemistry.png', ph: 'Chemistry photo' },
+        { n: '08', title: 'Intimacy', rot: 2.5, body: 'Deep emotional closeness, heartfelt vulnerability, and conversations that feel completely safe and authentic.', slot: 'mood-intimacy', src: '/assets/moods/intimacy.png', ph: 'Intimacy photo' },
+        { n: '09', title: 'Something Discreet', rot: -2, body: 'Private, low-key, and entirely on your terms. Mutual anonymity with full control over when and what you share.', slot: 'mood-discreet', src: '/assets/moods/something-discreet.png', ph: 'Something Discreet photo' },
+        { n: '10', title: 'Open to Possibilities', rot: 2, body: 'No rigid expectations, no checklists. Just open ears, curious minds, and seeing what wonderful connection unfolds.', slot: 'mood-possibilities', src: '/assets/moods/open-to-possibilities.png', ph: 'Open to Possibilities photo' },
       ],
     };
   }

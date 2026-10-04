@@ -25,6 +25,39 @@ const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   let pathname = decodeURIComponent(parsedUrl.pathname);
 
+  // API Mock Endpoints for Local Dev
+  if (pathname === '/api/geo') {
+    res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
+    res.end(JSON.stringify({
+      city: 'Bengaluru',
+      region: 'Karnataka',
+      country: 'India',
+      latitude: '12.9716',
+      longitude: '77.5946',
+      ip: '127.0.0.1',
+      location: 'Bengaluru, Karnataka, India'
+    }));
+    return;
+  }
+
+  if (pathname === '/api/waitlist') {
+    if (req.method === 'OPTIONS') {
+      res.writeHead(200, { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' });
+      res.end();
+      return;
+    }
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      let parsed = {};
+      try { parsed = JSON.parse(body); } catch (_) {}
+      const num = 1420 + Math.floor(Math.random() * 85);
+      res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+      res.end(JSON.stringify({ ok: true, num, contact: parsed.contact || '', location: parsed.location || '' }));
+    });
+    return;
+  }
+
   // Default root to index.html
   if (pathname === '/' || pathname === '') {
     pathname = '/index.html';
