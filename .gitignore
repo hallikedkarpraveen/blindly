@@ -13,3 +13,8 @@ blindly_*.md
 
 # Local SEO Documentation
 SEO_CHECKLIST.md
+
+# Google Search Console OAuth & Tokens
+client_secret*.json
+client_secrets.json
+token.json
