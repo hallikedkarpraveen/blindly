@@ -10,3 +10,11 @@ node_modules/
 blindly_client_seo_audit.md
 blindly_codebase_full_audit_report.md
 blindly_*.md
+
+# Local SEO Documentation
+SEO_CHECKLIST.md
+
+# Google Search Console OAuth & Tokens
+client_secret*.json
+client_secrets.json
+token.json
