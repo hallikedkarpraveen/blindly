@@ -5,6 +5,10 @@
     {
       "source": "/support",
       "destination": "/support.html"
+    },
+    {
+      "source": "/delete-account",
+      "destination": "/delete-account.html"
     }
   ],
   "headers": [
