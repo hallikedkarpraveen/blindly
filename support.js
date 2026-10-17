@@ -155,13 +155,6 @@
     runtime.markFetched(rootName);
     runtime.setRootName(rootName);
     runtime.adoptParsed(rootName, parsed);
-    if (!window.__resources) {
-      fetch(location.href).then((res) => res.ok ? res.text() : "").then((t) => {
-        const raw = t ? parseDcText(t) : null;
-        if (raw?.template) runtime.updateHtml(rootName, raw.template);
-      }).catch(() => {
-      });
-    }
     const dc = doc.querySelector("x-dc");
     const hostEl = doc.createElement("div");
     hostEl.id = "dc-root";
@@ -193,9 +186,11 @@
       return h(Root, { ...defaults, ...entry.propOverrides || {} });
     }
     const ReactDOM = getReactDOM();
-    if (ReactDOM.createRoot)
-      ReactDOM.createRoot(hostEl).render(h(StandaloneRoot));
-    else ReactDOM.render(h(StandaloneRoot), hostEl);
+    if (ReactDOM.createRoot) {
+      const root = ReactDOM.createRoot(hostEl);
+      if (ReactDOM.flushSync) ReactDOM.flushSync(() => root.render(h(StandaloneRoot)));
+      else root.render(h(StandaloneRoot));
+    } else ReactDOM.render(h(StandaloneRoot), hostEl);
     return rootName;
   }
 
@@ -1903,9 +1898,13 @@
     if (document.readyState !== "loading") api.__dcBoot();
     else document.addEventListener("DOMContentLoaded", () => api.__dcBoot());
   }
-  hideRawTemplate();
-  loadReactUmd().then(init).catch((err) => {
-    console.error("[dc] failed to load React or boot:", err);
-    throw err;
-  });
+  if (window.React && window.ReactDOM) {
+    init();
+  } else {
+    hideRawTemplate();
+    loadReactUmd().then(init).catch((err) => {
+      console.error("[dc] failed to load React or boot:", err);
+      throw err;
+    });
+  }
 })();

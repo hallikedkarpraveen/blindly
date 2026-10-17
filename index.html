@@ -27,57 +27,46 @@
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="image" href="/assets/showcase/hero-profile.webp" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,700;0,800;1,500;1,700&family=Unbounded:wght@700&family=Caveat:wght@600;700&family=Shrikhand&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,700;0,800;1,500;1,700&family=Unbounded:wght@700&family=Caveat:wght@600;700&family=Shrikhand&display=swap"></noscript>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://blindly.date/#org","name":"Blindly","legalName":"Ayrav Technologies Private Limited","url":"https://blindly.date/","logo":"https://blindly.date/icon-512.png","email":"info@blindly.date","contactPoint":[{"@type":"ContactPoint","contactType":"customer support","email":"info@blindly.date"},{"@type":"ContactPoint","contactType":"safety","email":"safety@blindly.date"}],"sameAs":["https://www.instagram.com/blindlydating","https://www.youtube.com/@blindlydating","https://www.reddit.com/r/blindly"]},{"@type":"WebSite","@id":"https://blindly.date/#website","name":"Blindly","url":"https://blindly.date/","inLanguage":"en-IN","publisher":{"@id":"https://blindly.date/#org"},"alternateName":["Blindly App","Blindly Dating","Blindly Date"]},{"@type":"MobileApplication","name":"Blindly","operatingSystem":"iOS, Android","applicationCategory":"LifestyleApplication","description":"Blindly is a blind dating app in India. No photos, no bios: choose your mood, talk by voice, and reveal each other only when you both say yes.","url":"https://blindly.date/","publisher":{"@id":"https://blindly.date/#org"},"applicationSubCategory":"DatingApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},{"@type":"WebPage","@id":"https://blindly.date/#webpage","url":"https://blindly.date/","name":"Blindly — Dating App in India | Official Blind Dating Site","description":"Blindly is a blind dating app in India. No photos, no bios: choose your mood, talk by voice, and reveal each other only when you both say yes.","inLanguage":"en-IN","isPartOf":{"@id":"https://blindly.date/#website"},"about":{"@id":"https://blindly.date/#org"},"primaryImageOfPage":"https://blindly.date/og.png","headline":"Blind Dating App in India · Fall for the person not the profile"},{"@type":"FAQPage","@id":"https://blindly.date/#faq","mainEntity":[{"@type":"Question","name":"What is Blindly?","acceptedAnswer":{"@type":"Answer","text":"Blindly is a blind dating app in India designed for real, personality-first connections without photos or bios. You pick your mood, connect with people seeking the same vibe, and stay completely anonymous until both of you mutually choose to reveal."}},{"@type":"Question","name":"How does blind dating work on Blindly?","acceptedAnswer":{"@type":"Answer","text":"Instead of superficial photo swiping, Blindly is an audio-first dating experience. Choose your mood, share an intro prompt, and talk with people in the same mood through voice notes and private chat. When the connection feels right, you each decide if and when to reveal."}},{"@type":"Question","name":"When do we see each other’s photos?","acceptedAnswer":{"@type":"Answer","text":"Only when you both choose to reveal. One yes isn’t enough, so nobody sees your face unless you want them to."}},{"@type":"Question","name":"Is Blindly safe?","acceptedAnswer":{"@type":"Answer","text":"Profiles are verified with a liveness check to stop fake accounts, and your identity stays hidden until a mutual reveal. Screen recording in the app is detected, leaked videos can be traced back to the account they came from, and you can report anyone from their profile or chat. Read more on our safety page."}},{"@type":"Question","name":"Is Blindly free?","acceptedAnswer":{"@type":"Answer","text":"Yes, Blindly is free. You can earn passes by inviting your friends."}},{"@type":"Question","name":"Is Blindly on iOS and Android?","acceptedAnswer":{"@type":"Answer","text":"Blindly is launching on the App Store and Google Play. Join the waitlist to get early access."}},{"@type":"Question","name":"Who can use Blindly?","acceptedAnswer":{"@type":"Answer","text":"Blindly is open to all adults aged 18 and over across India looking for meaningful connections—making it the ideal dating app for introverts and anyone tired of looks-based dating. Accounts belonging to anyone under 18 are removed."}}]},{"@type":"BreadcrumbList","@id":"https://blindly.date/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://blindly.date/"}]}]}</script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0FQ3VXYCY6"></script>
+<!-- Analytics (deferred after initial render to avoid blocking LCP/TBT) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-0FQ3VXYCY6');
+  window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+  !function(t,e){var o,n;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_xeHXbtpCDY6khQQqEc2Ufin2jbioC2h3cSUhAY6hP5Rx', { api_host: 'https://us.i.posthog.com', person_profiles: 'identified_only', capture_pageview: true, capture_pageleave: true, session_recording: { maskAllInputs: true } });
+  (function(){
+    var loaded = false;
+    function loadAnalytics() {
+      if (loaded) return;
+      loaded = true;
+      ['https://www.googletagmanager.com/gtm.js?id=GTM-WWMV8W3Z', 'https://us-assets.i.posthog.com/static/array.js'].forEach(function(src) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.crossOrigin = 'anonymous';
+        s.src = src;
+        document.head.appendChild(s);
+      });
+    }
+    ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function(ev) {
+      window.addEventListener(ev, loadAnalytics, { once: true, passive: true });
+    });
+    window.addEventListener('load', function() { setTimeout(loadAnalytics, 2500); }, { once: true });
+  })();
 </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WWMV8W3Z');</script>
-<!-- End Google Tag Manager -->
-<!-- PostHog -->
-<script>
-!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-posthog.init('phc_xeHXbtpCDY6khQQqEc2Ufin2jbioC2h3cSUhAY6hP5Rx', { api_host: 'https://us.i.posthog.com', person_profiles: 'identified_only', capture_pageview: true, capture_pageleave: true, session_recording: { maskAllInputs: true } });
-</script>
-<!-- End PostHog -->
 <style>
-sc-if[hint-placeholder-val="{{ false }}"],
-sc-if[hint-placeholder-val="false"],
-sc-if[value="{{ menuOpen }}"],
-sc-if[value="{{ wlOpen }}"],
-sc-if[value="{{ wlDone }}"],
-sc-if[value="{{ wlHasErr }}"] {
-  display: none !important;
-}
-</style>
-<script src="/assets/react.production.min.js"></script>
-<script src="/assets/react-dom.production.min.js"></script>
-<script src="/support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,700;0,800;1,500;1,700&family=Unbounded:wght@700&family=Caveat:wght@600;700&family=Shrikhand&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<style>
-@font-face{font-family:'Open Sauce One';font-weight:400;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-400-normal.woff2) format('woff2');}
-@font-face{font-family:'Open Sauce One';font-weight:700;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-700-normal.woff2) format('woff2');}
-@font-face{font-family:'Open Sauce One';font-weight:900;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-900-normal.woff2) format('woff2');}
-@font-face{font-family:'Open Sauce One';font-weight:900;font-style:italic;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Open Sauce One';font-weight:400;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Open Sauce One';font-weight:700;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Open Sauce One';font-weight:900;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Open Sauce One';font-weight:900;font-style:italic;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/open-sauce-one@latest/latin-900-italic.woff2) format('woff2');}
 @keyframes bl-revolve{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 @keyframes bl-dash{to{background-position:24px 0,-24px 100%,0 -24px,100% 24px}}
 @keyframes bl-float{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-8px) rotate(var(--r,0deg))}}
@@ -91,9 +80,26 @@ a:hover{color:#96091F;}
 summary::-webkit-details-marker{display:none}
 details[open] [data-plus]{transform:rotate(45deg)}
 [data-secnav]{display:none!important;visibility:hidden!important;pointer-events:none!important;}
-image-slot{touch-action:pan-y;}
+x-dc{display:block;}
+helmet,sc-for,
+sc-if[hint-placeholder-val="{{ false }}"],
+sc-if[hint-placeholder-val="false"],
+sc-if[value="{{ menuOpen }}"],
+sc-if[value="{{ wlOpen }}"],
+sc-if[value="{{ wlDone }}"],
+sc-if[value="{{ wlHasErr }}"] {
+  display: none !important;
+}
+@media (max-width: 759px) { sc-if[value="{{ desktop }}"] { display: none !important; } }
+@media (min-width: 760px) { sc-if[value="{{ mobile }}"] { display: none !important; } }
 </style>
-</helmet>
+<script defer src="/assets/react.production.min.js"></script>
+<script defer src="/assets/react-dom.production.min.js"></script>
+<script defer src="/assets/lenis.min.js"></script>
+<script defer src="/support.js"></script>
+</head>
+<body>
+<x-dc>
 
 <div ref="{{ rootRef }}" style="background:#FDF0EA;overflow-x:clip;">
   <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
@@ -175,13 +181,13 @@ image-slot{touch-action:pan-y;}
           <span data-rv="fade" style="margin:0;display:flex;align-items:center;gap:10px;font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(12px,1.1vw,14px);letter-spacing:.18em;text-transform:uppercase;color:#A93750;"><span aria-hidden="true" style="width:28px;height:2px;background:#A93750;"></span>Blind dating app · India</span>
           <span style="display:block;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(52px,8.4vw,136px);line-height:.88;letter-spacing:-.055em;text-transform:uppercase;color:#321525;">
             <span style="display:block;overflow:hidden;padding-top:.04em;"><span data-rv="rise" style="display:block;">Fall for</span></span>
-            <span style="display:block;overflow:hidden;padding-top:.04em;"><span data-rv="rise" data-d="110" style="display:block;"><span style="position:relative;display:inline-block;isolation:isolate;font-style:italic;color:{{ heroBg }};transition:color 700ms ease;"><span style="position:absolute;left:-.06em;right:-.06em;bottom:.08em;height:.36em;background:#FFD86B;z-index:-1;transform:rotate(-1deg);"></span>the person</span></span></span>
+            <span style="display:block;overflow:hidden;padding-top:.04em;"><span data-rv="rise" data-d="110" style="display:block;"><span style="position:relative;display:inline-block;isolation:isolate;font-style:italic;color:#A93750;color:{{ heroBg }};transition:color 700ms ease;"><span style="position:absolute;left:-.06em;right:-.06em;bottom:.08em;height:.36em;background:#FFD86B;z-index:-1;transform:rotate(-1deg);"></span>the person</span></span></span>
             <span style="display:block;overflow:hidden;padding:.04em 0 .08em;"><span data-rv="rise" data-d="220" style="display:block;">not the <span style="position:relative;display:inline-block;">profile<svg viewBox="0 0 300 40" preserveAspectRatio="none" style="position:absolute;left:-4%;top:38%;width:108%;height:.4em;overflow:visible;pointer-events:none;"><path data-rv="draw" data-d="900" d="M4 26 C 60 8, 110 34, 160 16 S 250 10, 296 20" fill="none" stroke="#E4405F" stroke-width="7" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;"></path></svg></span></span></span>
           </span>
         </h1>
         <div data-rv="fade" data-d="330" style="display:flex;align-items:center;">
           <a target="_blank" href="https://betalist.com/startups/blindly?utm_campaign=badge-blindly&amp;utm_medium=badge&amp;utm_source=badge-featured">
-            <img alt="Blindly - Meet people by voice first, reveal faces only on mutual vibe | BetaList" width="156" height="54" style="width: 156px; height: 54px" src="https://betalist.com/badges/featured?id=194138&amp;theme=color">
+            <img alt="Blindly - Meet people by voice first, reveal faces only on mutual vibe | BetaList" width="156" height="54" loading="lazy" decoding="async" style="width: 156px; height: 54px" src="https://betalist.com/badges/featured?id=194138&amp;theme=color">
           </a>
         </div>
       </div>
@@ -189,7 +195,7 @@ image-slot{touch-action:pan-y;}
       <div style="position:relative;display:flex;justify-content:center;perspective:1400px;min-height:clamp(420px,46vw,560px);">
         <div data-revolve="1" style="position:relative;width:clamp(260px,24vw,340px);transform-style:preserve-3d;will-change:transform;">
           <div data-rv="flip" data-d="300" style="position:relative;background:#FFFDFD;border:2px solid #321525;box-shadow:10px 10px 0 #321525;border-radius:22px;padding:10px;transform:rotate(3deg);">
-            <div style="position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:{{ heroBg }};transition:background 700ms ease;">
+            <div style="position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#A93750;background:{{ heroBg }};transition:background 700ms ease;">
               <img id="hero-profile" src="/assets/showcase/hero-profile.webp" alt="Blindly blind match profile photo with blur effect before mutual reveal" width="340" height="425" fetchpriority="high" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(14px) saturate(.8);transform:scale(1.12);mix-blend-mode:luminosity;opacity:.85;pointer-events:none;touch-action:pan-y;">
               <div style="position:absolute;left:-6%;right:-6%;top:30%;height:17%;background:#321525;transform:rotate(-4deg);display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(18px,1.8vw,24px);letter-spacing:.5em;color:#FDF0EA;padding-left:.5em;">BLINDLY</div>
               <span style="position:absolute;left:12px;top:12px;background:rgba(50,21,37,.78);color:#FDF0EA;padding:5px 11px;border-radius:999px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;">Sam, 24 · Bengaluru</span>
@@ -495,7 +501,7 @@ image-slot{touch-action:pan-y;}
     <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,7vw,88px) clamp(16px,3vw,40px) 28px;display:flex;flex-direction:column;gap:clamp(40px,5vw,64px);">
       <div style="display:flex;flex-wrap:wrap;gap:40px 48px;">
         <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:16px;max-width:360px;">
-          <div style="display:flex;align-items:center;gap:14px;"><img src="/assets/blindly-icon.png" alt="Blindly app icon" width="56" height="56" loading="lazy" decoding="async" style="width:56px;height:56px;border-radius:14px;display:block;box-shadow:0 0 0 2px #FDF0EA;"><span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:30px;line-height:1;letter-spacing:-.05em;color:#FDF0EA;">blind<span style="color:#F498AA;">ly</span><sup style="font-family:'Poppins',sans-serif;font-weight:600;font-size:11px;letter-spacing:0;vertical-align:super;margin-left:1px;">™</sup></span></div>
+          <div style="display:flex;align-items:center;gap:14px;"><img src="/assets/blindly-icon.webp" alt="Blindly app icon" width="56" height="56" loading="lazy" decoding="async" style="width:56px;height:56px;border-radius:14px;display:block;box-shadow:0 0 0 2px #FDF0EA;"><span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:30px;line-height:1;letter-spacing:-.05em;color:#FDF0EA;">blind<span style="color:#F498AA;">ly</span><sup style="font-family:'Poppins',sans-serif;font-weight:600;font-size:11px;letter-spacing:0;vertical-align:super;margin-left:1px;">™</sup></span></div>
           <span style="display:inline-flex;align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #FDF0EA;box-shadow:3px 3px 0 #FDF0EA;border-radius:999px;padding:6px 14px;font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;">✦ go blind</span>
           <p style="margin:0;max-width:300px;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;line-height:1.2;letter-spacing:-.03em;color:#FDF0EA;text-wrap:balance;">Get to know someone first <span style="color:#F498AA;">Reveal when you're ready</span></p>
           <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14px;line-height:1.5;color:#FBD4DB;">The blind dating app, built in India.</p>
@@ -505,7 +511,7 @@ image-slot{touch-action:pan-y;}
           </div>
           <div style="display:flex;align-items:center;padding-top:4px;">
             <a target="_blank" href="https://betalist.com/startups/blindly?utm_campaign=badge-blindly&amp;utm_medium=badge&amp;utm_source=badge-featured">
-              <img alt="Blindly - Meet people by voice first, reveal faces only on mutual vibe | BetaList" width="156" height="54" style="width: 156px; height: 54px" src="https://betalist.com/badges/featured?id=194138&amp;theme=dark">
+              <img alt="Blindly - Meet people by voice first, reveal faces only on mutual vibe | BetaList" width="156" height="54" loading="lazy" decoding="async" style="width: 156px; height: 54px" src="https://betalist.com/badges/featured?id=194138&amp;theme=dark">
             </a>
           </div>
         </div>
@@ -584,11 +590,13 @@ class Component extends DCLogic {
     const fill = one('[data-st-fill]'), timer = one('[data-st-timer]'), ring = one('[data-st-ring]'), match = one('[data-st-match]'), rec = one('[data-st-rec]'), found = one('[data-st-found]');
     const cl = (v) => Math.max(0, Math.min(1, v));
     const n = T.length;
-    let cur = -1, lastT = '', lastBub = -2, lastTg = '', lastBlur = -1, lastM = null, lastMood = -2;
+    let cur = -1, lastT = '', lastBub = -2, lastTg = '', lastBlur = -1, lastM = null, lastMood = -2, lastStY = -1, stR = null, stVh = 0;
     this.storyOn = true;
     const tick = (now) => {
       if (!this.storyOn) return;
-      const r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      const y = window.scrollY, vh = window.innerHeight;
+      if (y !== lastStY || vh !== stVh || !stR) { lastStY = y; stVh = vh; stR = sec.getBoundingClientRect(); }
+      const r = stR;
       if (r.bottom > -50 && r.top < vh + 50) {
         const p = cl(-r.top / Math.max(1, r.height - vh));
         const c = Math.min(n - .001, p * (n + .4));
@@ -634,17 +642,11 @@ class Component extends DCLogic {
     const root = this.rootRef.current;
     if (!root) return;
     this.initStory(root);
-    this.onMQ = () => { const m = window.innerWidth < 760; if (m !== this.state.mobile) this.setState({ mobile: m, menuOpen: m ? this.state.menuOpen : false }); };
     this.mq = window.matchMedia('(max-width: 759px)');
     this.onMQ = () => { const m = this.mq.matches; if (m !== this.state.mobile) this.setState({ mobile: m, menuOpen: m ? this.state.menuOpen : false }); };
     this.onMQ();
-    requestAnimationFrame(this.onMQ);
-    setTimeout(this.onMQ, 500);
     this.mq.addEventListener ? this.mq.addEventListener('change', this.onMQ) : this.mq.addListener(this.onMQ);
-    window.addEventListener('resize', this.onMQ);
-    window.addEventListener('load', this.onMQ);
-    if (document.fonts) document.fonts.ready.then(() => this.onMQ && this.onMQ());
-    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 760) { const g = root.querySelector('[data-grain]'); if (g) g.style.display = 'none'; }
+    if (this.mq.matches || window.matchMedia('(pointer: coarse)').matches) { const g = root.querySelector('[data-grain]'); if (g) g.style.display = 'none'; }
     this.onWLClick = (e) => { const a = e.target.closest && e.target.closest('[data-wl]'); if (!a) return; e.preventDefault(); e.stopPropagation(); this.openWL(a.dataset.wl); };
     root.addEventListener('click', this.onWLClick, true);
     this.onWLKey = (e) => { if (e.key === 'Escape' && this.state && this.state.wlOpen) this.closeWL(); };
@@ -792,7 +794,7 @@ class Component extends DCLogic {
       flip: (el) => el.dataset.rot || 'none',
     };
     this.E = { rise: '1100ms ' + INOUT, fade: '900ms ' + EXPO, phone: '1200ms ' + BOUNCE, pop: '700ms cubic-bezier(.34,1.8,.64,1)', flip: '1000ms ' + BOUNCE, mask: '1300ms ' + INOUT, scale: '1000ms ' + BOUNCE, track: '1400ms ' + EXPO, draw: '900ms cubic-bezier(.65,0,.35,1)' };
-    this.els = [...root.querySelectorAll('[data-rv]')];
+    this.els = [...root.querySelectorAll('[data-rv]')].filter((el) => !el.closest('#top'));
     this.map = new Map();
     this.els.forEach((el) => {
       const t = el.dataset.rv;
@@ -862,7 +864,8 @@ class Component extends DCLogic {
     const blurs = qa('[data-blur]'), floats = qa('[data-float]');
     const cur = q('[data-cursor]'), curLabel = q('[data-cursor-label]');
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2, cx = mx, cy = my, fx = 0, fy = 0;
+    let initVw = window.innerWidth, initVh = window.innerHeight;
+    let mx = initVw / 2, my = initVh / 2, cx = mx, cy = my, fx = 0, fy = 0;
     this.onMove = (e) => { mx = e.clientX; my = e.clientY; if (cur && fine) cur.style.display = 'flex'; };
     this.onOver = (e) => {
       if (!cur) return;
@@ -876,7 +879,7 @@ class Component extends DCLogic {
     };
     window.addEventListener('mousemove', this.onMove, { passive: true });
     window.addEventListener('mouseover', this.onOver, { passive: true });
-    if (window.innerWidth < 600) floats.forEach((el) => { if (el.querySelector('image-slot, img') && !el.dataset.center) el.style.display = 'none'; });
+    if (initVw < 600) floats.forEach((el) => { if (el.querySelector('image-slot, img') && !el.dataset.center) el.style.display = 'none'; });
     const blocks = [...root.children].filter((el) => el.matches('[data-screen-label]') || el.querySelector(':scope > [data-screen-label]'));
     const lblOf = (b) => (b.dataset.screenLabel || (b.querySelector(':scope > [data-screen-label]') || {}).dataset?.screenLabel || '');
     const STACK = ['04', '06', '07', '08'];
@@ -896,21 +899,39 @@ class Component extends DCLogic {
     });
     const shades = blocks.map((b, i) => {
       if (!stacked[i + 1]) return null;
-      if (getComputedStyle(b).position === 'static') b.style.position = 'relative';
+      if (!b.style.position || b.style.position === 'static') b.style.position = 'relative';
       const d = document.createElement('div');
       d.style.cssText = 'position:absolute;inset:0;z-index:50;background:#1a0a12;opacity:0;pointer-events:none;will-change:opacity;';
       b.appendChild(d);
       return d;
     });
+    const mq = q('[data-marquee]'), pars = qa('[data-par]');
+    const sx = q('[data-sx]'), sxWrap = q('[data-stories]');
+    const pin = q('[data-pin]'), pinInner = q('[data-pin-inner]');
+    let mqHalf = 0, sxTravel = 0, rectY = -1, rectVw = -1, rectVh = -1;
     const pinOut = () => {
-      const vh = window.innerHeight;
+      const vh = window.innerHeight, vw = window.innerWidth;
+      if (pin && pinInner) {
+        const mobile = vw < 820;
+        if (mobile !== this.pinMobile) {
+          this.pinMobile = mobile;
+          pin.style.height = mobile ? 'auto' : '240vh';
+          pinInner.style.position = mobile ? 'relative' : 'sticky';
+          pinInner.style.height = mobile ? 'auto' : '100vh';
+          pinInner.style.padding = mobile ? '72px 0' : '0';
+        }
+      }
+      const heights = blocks.map((b, i) => (stacked[i + 1] && !b.dataset.story) ? b.offsetHeight : 0);
+      mqHalf = mq ? mq.scrollWidth / 2 : 0;
+      sxTravel = (sx && sxWrap) ? Math.max(0, sx.scrollWidth - sxWrap.clientWidth) : 0;
       blocks.forEach((b, i) => {
         if (!stacked[i + 1] || b.dataset.story) return;
-        const t = Math.min(0, Math.round(vh - b.offsetHeight));
+        const t = Math.min(0, Math.round(vh - heights[i]));
         b.style.position = 'sticky';
         b.style.top = t + 'px';
         b.style.transformOrigin = '50% ' + (-t + vh * .35) + 'px';
       });
+      rectY = -1;
     };
     pinOut();
     this.onPinResize = pinOut;
@@ -932,9 +953,6 @@ class Component extends DCLogic {
       });
 
     }
-    const mq = q('[data-marquee]'), pars = qa('[data-par]');
-    const sx = q('[data-sx]'), sxWrap = q('[data-stories]');
-    const pin = q('[data-pin]'), pinInner = q('[data-pin-inner]');
     const P = { card: q('[data-p-card]'), ladder: q('[data-p-ladder]'), n30: q('[data-p-30]'), tracks: qa('[data-p-track]'), copy: q('[data-p-copy]'), bar: q('[data-p-bar]'), bg: q('[data-p-bg]'), rec: q('[data-p-rec]'), ring: q('[data-p-ring]'), scan: q('[data-p-scan]'), match: q('[data-p-match]'), mimg: q('[data-p-matchimg]'), badge: q('[data-p-badge]'), st: q('[data-p-status-t]'), dot: q('[data-p-dot]'), shutter: q('[data-p-shutter]') };
     let lastStatus = '';
     const stPill = q('[data-p-status]');
@@ -946,16 +964,21 @@ class Component extends DCLogic {
     const ease = (t) => 1 - Math.pow(1 - t, 3);
     const lerp = (a, b, t) => a + (b - a) * t;
     let status2 = '', storyT = 0, storyDone = false, pS = null, spin = 0, lastY = window.scrollY, vel = 0, angle = 0, mqX = 0, mqDir = 1, sxCur = null, last = performance.now();
+    let bR = [], pR = [], blR = [], pinR = null, sxR = null;
     this.alive = true;
     const frame = (now) => {
       if (!this.alive) return;
       const dt = Math.min(64, now - last) / 1000; last = now;
       if (this.lenis) this.lenis.raf(now);
       const y = window.scrollY, vh = window.innerHeight, vw = window.innerWidth;
-      const bR = blocks.map((b) => b.getBoundingClientRect());
-      const pR = pars.map((el) => el.parentElement.getBoundingClientRect());
-      const blR = blurs.map((el) => el.parentElement.getBoundingClientRect());
-      const pinR = pin ? pin.getBoundingClientRect() : null, sxR = sxWrap ? sxWrap.getBoundingClientRect() : null;
+      if (y !== rectY || vw !== rectVw || vh !== rectVh) {
+        rectY = y; rectVw = vw; rectVh = vh;
+        bR = blocks.map((b) => b.getBoundingClientRect());
+        pR = pars.map((el) => el.parentElement.getBoundingClientRect());
+        blR = blurs.map((el) => el.parentElement.getBoundingClientRect());
+        pinR = pin ? pin.getBoundingClientRect() : null;
+        sxR = sxWrap ? sxWrap.getBoundingClientRect() : null;
+      }
       const dy = y - lastY; lastY = y;
       vel = lerp(vel, dy / Math.max(dt, .001), .12);
       if (Math.abs(dy) > .5) mqDir = dy > 0 ? 1 : -1;
@@ -967,10 +990,9 @@ class Component extends DCLogic {
         rev.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) rotateZ(' + (Math.sin(angle * .5) * 2 - 4).toFixed(2) + 'deg) translateY(' + (Math.sin(angle * 1.3) * 6).toFixed(1) + 'px)';
       }
 
-      if (mq) {
-        const half = mq.scrollWidth / 2;
+      if (mq && mqHalf > 0) {
         mqX -= dt * (70 + Math.min(1400, Math.abs(vel)) * .5) * mqDir;
-        if (mqX <= -half) mqX += half; if (mqX > 0) mqX -= half;
+        if (mqX <= -mqHalf) mqX += mqHalf; if (mqX > 0) mqX -= mqHalf;
         mq.style.transform = 'translate3d(' + mqX + 'px,0,0) skewX(' + clamp(-vel * .004, -8, 8) + 'deg)';
       }
 
@@ -996,15 +1018,8 @@ class Component extends DCLogic {
       }
       pars.forEach((el, i) => { const r = pR[i]; el.style.transform = 'translateY(' + ((r.top + r.height / 2 - vh / 2) * +el.dataset.par) + 'px)'; });
 
-      if (pin && pinInner) {
+      if (pin && pinInner && pinR) {
         const mobile = vw < 820;
-        if (mobile !== this.pinMobile) {
-          this.pinMobile = mobile;
-          pin.style.height = mobile ? 'auto' : '240vh';
-          pinInner.style.position = mobile ? 'relative' : 'sticky';
-          pinInner.style.height = mobile ? 'auto' : '100vh';
-          pinInner.style.padding = mobile ? '72px 0' : '0';
-        }
         const r = pinR;
         const pRaw = mobile ? clamp((vh - r.top) / (vh * .9)) : clamp(-r.top / Math.max(1, r.height - vh));
         pS = pS === null ? pRaw : lerp(pS, pRaw, .14);
@@ -1018,8 +1033,6 @@ class Component extends DCLogic {
         if (P.ladder) P.ladder.style.transform = 'translateY(' + lerp(40, -4, a2) + 'vh)';
         if (P.bg) P.bg.style.opacity = String(lerp(0, .22, a1));
         if (P.n30) P.n30.style.transform = 'scale(' + lerp(1.1, 1, a1) + ')';
-        
-        
         if (P.bar) P.bar.style.transform = 'scaleX(' + p + ')';
         {
           const kr = clamp((p - .08) / .7);
@@ -1114,7 +1127,7 @@ class Component extends DCLogic {
       }
       blurs.forEach((el, bi) => {
         const r = blR[bi];
-        if (r.bottom < -200 || r.top > vh + 200) return;
+        if (!r || r.bottom < -200 || r.top > vh + 200) return;
         const k = clamp((r.top - vh * .55) / (vh * .45));
         el.style.filter = k > .01 ? 'blur(' + (k * 8).toFixed(1) + 'px)' : '';
         if (el.dataset.live) {
@@ -1123,10 +1136,10 @@ class Component extends DCLogic {
         } else el.style.transform = 'scale(' + (1 + k * .08).toFixed(3) + ')';
       });
 
-      if (sx && sxWrap) {
+      if (sx && sxWrap && sxR) {
         const r = sxR;
         const p = clamp((vh - r.top) / (vh + r.height));
-        const travel = Math.max(0, sx.scrollWidth - sxWrap.clientWidth);
+        const travel = sxTravel;
         const target = -travel + p * travel;
         sxCur = sxCur === null ? target : lerp(sxCur, target, .1);
         sx.style.transform = 'translate3d(' + sxCur + 'px,0,0)';
