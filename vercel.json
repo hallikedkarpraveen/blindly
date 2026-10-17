@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/support",
+      "destination": "/support.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(support|image-slot)\\.js",
