@@ -3,6 +3,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/c/:code",
+      "destination": "https://velvet-backend-fvpw.onrender.com/c/:code"
+    },
+    {
+      "source": "/r/:code",
+      "destination": "https://velvet-backend-fvpw.onrender.com/r/:code"
+    },
+    {
       "source": "/support",
       "destination": "/support.html"
     },
@@ -12,6 +20,15 @@
     }
   ],
   "headers": [
+    {
+      "source": "/(c|r)/:code",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        }
+      ]
+    },
     {
       "source": "/(support|image-slot)\\.js",
       "headers": [

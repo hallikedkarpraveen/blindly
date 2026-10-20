@@ -35,3 +35,14 @@ Static site. No build step, no dependencies.
 - Submit `https://blindly.date/sitemap.xml` in Google Search Console.
 - Check `https://www.blindly.date/` redirects to `https://blindly.date/`.
 - The previous site had pages at `/product`, `/why`, `/stories`, `/download`, `/careers`, `/press`, `/contact`. They no longer exist. Add redirects in `vercel.json` if you want them to go to `/`.
+
+## Invite links
+
+Vercel forwards `/c/:code` and legacy `/r/:code` to the app backend on Render.
+Query parameters (including `type` and `hint`) are preserved. Invite responses
+are not cached because the backend generates a visitor-specific attribution token.
+Keep these rewrites when updating the website; the Flutter/backend repository's
+Vercel configuration does not control this deployment.
+
+After deployment, check a real invite link with desktop, iPhone, and Android
+user agents, and confirm `/support` and `/delete-account` still load.
