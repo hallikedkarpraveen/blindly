@@ -138,6 +138,28 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Redirects
+  if (pathname === '/download' || pathname === '/download/') {
+    res.writeHead(307, { Location: '/?waitlist=true&src=Download' });
+    res.end();
+    return;
+  }
+  if (pathname === '/product' || pathname === '/product/') {
+    res.writeHead(307, { Location: '/#product' });
+    res.end();
+    return;
+  }
+  if (pathname === '/why' || pathname === '/why/') {
+    res.writeHead(307, { Location: '/#why' });
+    res.end();
+    return;
+  }
+  if (pathname === '/stories' || pathname === '/stories/') {
+    res.writeHead(307, { Location: '/#stories' });
+    res.end();
+    return;
+  }
+
   // Default root to index.html
   if (pathname === '/' || pathname === '') {
     pathname = '/index.html';

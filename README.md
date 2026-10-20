@@ -34,7 +34,7 @@ Static site. No build step, no dependencies.
 ## After deploy
 - Submit `https://blindly.date/sitemap.xml` in Google Search Console.
 - Check `https://www.blindly.date/` redirects to `https://blindly.date/`.
-- The previous site had pages at `/product`, `/why`, `/stories`, `/download`, `/careers`, `/press`, `/contact`. They no longer exist. Add redirects in `vercel.json` if you want them to go to `/`.
+- Redirects configured in `vercel.json`: `/download` redirects to `/?waitlist=true&src=Download` for early access waitlist; `/product`, `/why`, `/stories` redirect to their respective sections on the homepage.
 
 ## Invite links
 

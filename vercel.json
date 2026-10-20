@@ -1,6 +1,28 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/download",
+      "destination": "/?waitlist=true&src=Download",
+      "permanent": false
+    },
+    {
+      "source": "/product",
+      "destination": "/#product",
+      "permanent": false
+    },
+    {
+      "source": "/why",
+      "destination": "/#why",
+      "permanent": false
+    },
+    {
+      "source": "/stories",
+      "destination": "/#stories",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/c/:code",
