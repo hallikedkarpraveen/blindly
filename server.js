@@ -2,6 +2,19 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Load local .env.local or .env if present
+for (const envFile of ['.env.local', '.env']) {
+  const p = path.join(__dirname, envFile);
+  if (fs.existsSync(p)) {
+    fs.readFileSync(p, 'utf8').split(/\r?\n/).forEach((line) => {
+      const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
+      if (m && !process.env[m[1]]) {
+        process.env[m[1]] = m[2].replace(/^['"]|['"]$/g, '');
+      }
+    });
+  }
+}
+
 const PORT = process.env.PORT || 3000;
 const ROOT_DIR = __dirname;
 
@@ -52,7 +65,7 @@ const server = http.createServer((req, res) => {
     req.on('end', async () => {
       let parsed = {};
       try { parsed = JSON.parse(body); } catch (_) {}
-      const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec';
+      const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || '';
 
       const city = parsed.city || 'Bengaluru';
       const region = parsed.region || 'Karnataka';
@@ -63,7 +76,7 @@ const server = http.createServer((req, res) => {
       const locString = parsed.location || [city, region, country].filter(Boolean).join(', ');
 
       const payloadToGoogle = {
-        secret: process.env.WAITLIST_SECRET || 'blnd_sec_9e2f4a1c6b8d30e5',
+        secret: process.env.WAITLIST_SECRET || '',
         ...parsed,
         contact: parsed.contact || '',
         email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(parsed.contact || '') ? parsed.contact : (parsed.email || ''),
@@ -98,30 +111,35 @@ const server = http.createServer((req, res) => {
         Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
       };
 
-      try {
-        const googleRes = await fetch(scriptUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payloadToGoogle),
-          redirect: 'follow'
-        });
-        if (googleRes.ok) {
-          const data = await googleRes.json();
-          res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-          res.end(JSON.stringify({
-            ok: true,
-            num: Number(data.num) || 4230,
-            existing: !!data.existing,
-            contact: parsed.contact || '',
-            location: locString,
-            city,
-            region,
-            country
-          }));
-          return;
+      if (scriptUrl) {
+        try {
+          const googleRes = await fetch(scriptUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8',
+              'Accept-Encoding': 'gzip, deflate'
+            },
+            body: JSON.stringify(payloadToGoogle),
+            redirect: 'follow'
+          });
+          if (googleRes.ok) {
+            const data = await googleRes.json();
+            res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+            res.end(JSON.stringify({
+              ok: true,
+              num: Number(data.num) || 4230,
+              existing: !!data.existing,
+              contact: parsed.contact || '',
+              location: locString,
+              city,
+              region,
+              country
+            }));
+            return;
+          }
+        } catch (e) {
+          console.error('Local server Google Sheet forward error:', e);
         }
-      } catch (e) {
-        console.error('Local server Google Sheet forward error:', e);
       }
       const num = 4230 + Math.floor(Math.random() * 85);
       res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });

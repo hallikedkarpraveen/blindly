@@ -1270,7 +1270,7 @@ class Component extends DCLogic {
     const email = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     const phone = /^\d{10,13}$/.test(v.replace(/[\s()+-]/g, ''));
     if (!email && !phone) { this.setState({ wlErr: 'Enter a valid phone number or email.' }); return; }
-    const url = (this.props.waitlistEndpoint || 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec').trim();
+    const url = (this.props.waitlistEndpoint || '/api/waitlist').trim();
     if (!url) { this.setState({ wlErr: 'Waitlist is not connected yet. Add the Google Sheet URL in Tweaks.' }); return; }
 
     const geo = this.geoData || {};

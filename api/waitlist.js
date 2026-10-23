@@ -1,5 +1,4 @@
-const DEFAULT_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAAwydbvNL25Z-muIiukfZ7HixwNIE2OWTNxN7SUJNWvLxowojvnvkUi0xt6tF61au/exec';
-const WAITLIST_SECRET = process.env.WAITLIST_SECRET || 'blnd_sec_9e2f4a1c6b8d30e5';
+const WAITLIST_SECRET = process.env.WAITLIST_SECRET || '';
 
 // In-memory sliding-window IP rate limiter
 const ipHits = new Map();
@@ -136,7 +135,7 @@ export default async function handler(req, res) {
   const locString = sanitizeField(body.location || headerLocString || [city, region, country].filter(Boolean).join(', '));
   const contact = sanitizeField(rawContact, isEmail);
 
-  const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || DEFAULT_GOOGLE_SCRIPT_URL;
+  const scriptUrl = process.env.WAITLIST_GOOGLE_SCRIPT_URL || '';
 
   // Build secure payload with secret authorization token
   const payloadToGoogle = {
@@ -166,29 +165,34 @@ export default async function handler(req, res) {
     timestamp: new Date().toISOString()
   };
 
-  try {
-    const googleRes = await fetch(scriptUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payloadToGoogle),
-      redirect: 'follow'
-    });
-
-    if (googleRes.ok) {
-      const data = await googleRes.json();
-      return res.status(200).json({
-        ok: true,
-        num: Number(data.num) || 4236,
-        existing: !!data.existing,
-        contact: contact,
-        location: locString,
-        city: city,
-        region: region,
-        country: country
+  if (scriptUrl) {
+    try {
+      const googleRes = await fetch(scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+          'Accept-Encoding': 'gzip, deflate'
+        },
+        body: JSON.stringify(payloadToGoogle),
+        redirect: 'follow'
       });
+
+      if (googleRes.ok) {
+        const data = await googleRes.json();
+        return res.status(200).json({
+          ok: true,
+          num: Number(data.num) || 4236,
+          existing: !!data.existing,
+          contact: contact,
+          location: locString,
+          city: city,
+          region: region,
+          country: country
+        });
+      }
+    } catch (err) {
+      console.error('Error forwarding to Google Sheet:', err);
     }
-  } catch (err) {
-    console.error('Error forwarding to Google Sheet:', err);
   }
 
   // Fallback response if Google Apps Script is momentarily unreachable
