@@ -109,7 +109,7 @@ a:hover{color:#96091F;}
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:6px;">
         <a href="mailto:press@blindly.date" style="display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;background:#321525;color:#FDF0EA;padding:12px 24px;border-radius:999px;border:2px solid #321525;box-shadow:3px 3px 0 #A93750;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;max-width:100%;box-sizing:border-box;white-space:normal;" style-hover="background:#A93750;color:#FDF0EA;">Reach out to our press team ✉</a>
-        <a id="press-join-wl" data-wl="Press Early Access" href="/?waitlist=true" style="display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;background:#FFD86B;color:#321525;padding:12px 24px;border-radius:999px;border:2px solid #321525;box-shadow:3px 3px 0 #321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;cursor:pointer;max-width:100%;box-sizing:border-box;" style-hover="background:#FFE38F;color:#321525;">Join the waitlist →</a>
+        <a id="press-join-wl" data-wl="Press Beta Access" href="/?waitlist=true" style="display:inline-flex;align-items:center;justify-content:center;text-align:center;gap:8px;background:#FFD86B;color:#321525;padding:12px 24px;border-radius:999px;border:2px solid #321525;box-shadow:3px 3px 0 #321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;cursor:pointer;max-width:100%;box-sizing:border-box;" style-hover="background:#FFE38F;color:#321525;">Join the Bangalore beta →</a>
       </div>
     </section>
 
@@ -139,7 +139,7 @@ a:hover{color:#96091F;}
         <div style="border-top:1px dashed #321525;padding-top:12px;display:flex;flex-direction:column;gap:6px;font-family:'Poppins',sans-serif;font-size:13px;color:#7A4A5E;">
           <div><strong style="color:#321525;">Legal Entity:</strong> Ayrav Technologies Private Limited</div>
           <div><strong style="color:#321525;">HQ:</strong> India</div>
-          <div><strong style="color:#321525;">Platforms:</strong> iOS &amp; Android (Launching soon)</div>
+          <div><strong style="color:#321525;">Platforms:</strong> iOS (TestFlight) &amp; Android (Google Play Beta) · Invite-only Bangalore Beta</div>
           <div><strong style="color:#321525;">Core Safety:</strong> Liveness verification, anti-screenshot tracing, zero tolerance child safety</div>
         </div>
       </section>
@@ -223,25 +223,31 @@ a:hover{color:#96091F;}
 
 <!-- Waitlist Modal for Press Page -->
 <div id="wl-modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(50,21,37,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
-  <div role="dialog" aria-modal="true" aria-label="Join the Blindly waitlist" style="position:relative;width:min(460px,100%);background:#FDF0EA;color:#321525;border:2px solid #321525;border-radius:28px;box-shadow:10px 10px 0 #A93750;padding:clamp(24px,4vw,36px);display:flex;flex-direction:column;gap:16px;">
+  <div role="dialog" aria-modal="true" aria-label="Join the Bangalore beta" style="position:relative;width:min(480px,100%);background:#FDF0EA;color:#321525;border:2px solid #321525;border-radius:28px;box-shadow:10px 10px 0 #A93750;padding:clamp(24px,4vw,36px);display:flex;flex-direction:column;gap:14px;">
     <button id="wl-close-btn" aria-label="Close" style="position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1.5px solid #321525;background:#FFFDFD;color:#321525;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
-    <div id="wl-form-view" style="display:flex;flex-direction:column;gap:16px;">
-      <span id="wl-src-tag" style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ press early access</span>
-      <h3 style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(30px,4vw,40px);line-height:1;letter-spacing:-.045em;">Join the waitlist</h3>
-      <p style="margin:0;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;">Blindly is launching soon on the App Store and Google Play. Leave your phone number or email and we'll tell you the moment you can go blind.</p>
+    <div id="wl-form-view" style="display:flex;flex-direction:column;gap:14px;">
+      <span id="wl-src-tag" style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ bangalore beta</span>
+      <h3 style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(28px,4vw,36px);line-height:1.05;letter-spacing:-.045em;">Join the Bangalore beta</h3>
+      <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;">Blindly is currently in an invite-only beta in Bangalore on iOS and Android. Enter your phone number or email to get your beta invite and installation link.</p>
+      <div style="background:#FFFDFD;border:1.5px solid #321525;border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.45;color:#321525;">
+        <span style="font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#A93750;">How installation &amp; access works</span>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><strong style="color:#A93750;flex:none;">1. Request access:</strong><span>Sign up below to reserve your spot in the next Bangalore cohort.</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><strong style="color:#A93750;flex:none;">2. Install the app:</strong><span>We'll send your direct beta link for <strong>iOS (Apple TestFlight)</strong> or <strong>Android (Google Play Beta)</strong>.</span></div>
+        <div style="display:flex;gap:8px;align-items:flex-start;"><strong style="color:#A93750;flex:none;">3. Go blind:</strong><span>Sign in with the same phone number or email to unlock your beta account.</span></div>
+      </div>
       <form id="wl-form" style="display:flex;flex-direction:column;gap:10px;">
         <input id="wl-input" aria-label="Phone number or email" placeholder="Phone number or email" style="width:100%;height:54px;border-radius:16px;border:2px solid #321525;background:#FFFDFD;color:#321525;padding:0 18px;font-family:'Poppins',sans-serif;font-size:16px;outline:none;">
         <input name="b_hp_check" id="wl-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;pointer-events:none;left:-9999px;width:1px;height:1px;">
         <div id="wl-err" style="display:none;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#A93750;"></div>
-        <button id="wl-submit-btn" type="submit" style="height:54px;border-radius:999px;border:2px solid #321525;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #A93750;transition:transform .25s cubic-bezier(.34,1.56,.64,1);">Join the waitlist →</button>
+        <button id="wl-submit-btn" type="submit" style="height:54px;border-radius:999px;border:2px solid #321525;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #A93750;transition:transform .25s cubic-bezier(.34,1.56,.64,1);">Get my beta invite →</button>
       </form>
-      <span style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.5;color:#7A4A5E;">By joining, you agree to be contacted about Blindly's launch. See our <a href="/privacy" style="color:#A93750;font-weight:600;text-decoration:underline;">Privacy Policy</a>. No spam.</span>
+      <span style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.5;color:#7A4A5E;">By joining, you agree to receive your beta invite and download instructions. See our <a href="/privacy" style="color:#A93750;font-weight:600;text-decoration:underline;">Privacy Policy</a>. No spam.</span>
     </div>
-    <div id="wl-done-view" style="display:none;flex-direction:column;gap:16px;">
-      <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ you're in</span>
-      <span style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#A93750;">Your spot on the waitlist</span>
+    <div id="wl-done-view" style="display:none;flex-direction:column;gap:14px;">
+      <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ beta spot reserved</span>
+      <span style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#A93750;">Your Bangalore beta queue number</span>
       <span id="wl-num" style="font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(64px,12vw,96px);line-height:.9;letter-spacing:-.06em;color:#321525;font-variant-numeric:tabular-nums;">#4240</span>
-      <p id="wl-contact-msg" style="margin:0;font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;">We'll reach you as soon as Blindly is live on the App Store and Google Play.</p>
+      <p id="wl-contact-msg" style="margin:0;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;">We'll send your <strong>Apple TestFlight (iOS)</strong> &amp; <strong>Google Play Beta (Android)</strong> install link and access code as soon as the next Bangalore batch opens.</p>
       <button id="wl-done-btn" style="height:52px;border-radius:999px;border:2px solid #321525;background:#FFD86B;color:#321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #321525;">Done</button>
     </div>
   </div>
@@ -288,7 +294,7 @@ a:hover{color:#96091F;}
     if (tag) tag.textContent = '✦ ' + currentSource.toLowerCase();
     if (stored && stored.num) {
       if (numEl) numEl.textContent = '#' + stored.num;
-      if (contactMsg) contactMsg.innerHTML = 'We will reach you at <strong style="font-weight:700;">' + (stored.contact || 'your contact') + '</strong> as soon as Blindly is live.';
+      if (contactMsg) contactMsg.innerHTML = 'We will send your <strong>Apple TestFlight (iOS)</strong> &amp; <strong>Google Play Beta (Android)</strong> install link to <strong style="font-weight:700;">' + (stored.contact || 'your contact') + '</strong> as soon as the next Bangalore batch opens.';
       formView.style.display = 'none';
       doneView.style.display = 'flex';
     } else {
@@ -368,11 +374,11 @@ a:hover{color:#96091F;}
 
       // Optimistic transition
       if (numEl) numEl.textContent = '#' + estNum;
-      if (contactMsg) contactMsg.innerHTML = 'We will reach you at <strong style="font-weight:700;">' + v + '</strong> as soon as Blindly is live.';
+      if (contactMsg) contactMsg.innerHTML = 'We will send your <strong>Apple TestFlight (iOS)</strong> &amp; <strong>Google Play Beta (Android)</strong> install link to <strong style="font-weight:700;">' + v + '</strong> as soon as the next Bangalore batch opens.';
       formView.style.display = 'none';
       doneView.style.display = 'flex';
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Join the waitlist →';
+      submitBtn.textContent = 'Get my beta invite →';
 
       // Send to server in background
       fetch('/api/waitlist', {
