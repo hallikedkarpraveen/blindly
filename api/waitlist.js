@@ -117,6 +117,13 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false, error: 'Please enter a valid phone number or email.' });
   }
 
+  // Gender is asked in the modal; pages cached from before it existed send none.
+  const GENDERS = ['Woman', 'Man', 'Non-binary'];
+  const gender = body.gender == null || body.gender === '' ? '' : String(body.gender);
+  if (gender && !GENDERS.includes(gender)) {
+    return res.status(400).json({ ok: false, error: 'Please pick a valid gender.' });
+  }
+
   // Extract Vercel IP-based Geolocation Headers
   const headerCity = req.headers['x-vercel-ip-city'] ? decodeURIComponent(req.headers['x-vercel-ip-city']) : '';
   const headerRegion = req.headers['x-vercel-ip-country-region'] || '';
@@ -143,6 +150,8 @@ export default async function handler(req, res) {
     contact: contact,
     email: isEmail ? contact : '',
     phone: isPhone ? (cleanPhone.startsWith('91') ? cleanPhone : ('91' + cleanPhone.slice(-10))) : '',
+    gender: gender,
+    Gender: gender,
     location: locString,
     Location: locString,
     city: city,

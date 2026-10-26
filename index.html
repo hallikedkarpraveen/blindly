@@ -128,21 +128,23 @@ sc-if[value="{{ wlHasErr }}"] {
     </div>
   </sc-if>
   <sc-if value="{{ wlOpen }}" hint-placeholder-val="{{ false }}">
-    <div onClick="{{ wlClose }}" style="position:fixed;inset:0;z-index:120;background:rgba(50,21,37,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;">
-      <div role="dialog" aria-modal="true" aria-label="Join the Bangalore beta" onClick="{{ wlStop }}" style="position:relative;width:min(480px,100%);background:#FDF0EA;color:#321525;border:2px solid #321525;border-radius:28px;box-shadow:10px 10px 0 #A93750;padding:clamp(22px,4vw,32px);display:flex;flex-direction:column;gap:14px;">
+    <div onClick="{{ wlClose }}" style="position:fixed;inset:0;z-index:120;background:rgba(50,21,37,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;overflow-y:auto;padding:16px;">
+      <div role="dialog" aria-modal="true" aria-label="Join the Bangalore beta" onClick="{{ wlStop }}" style="position:relative;margin:auto;width:min(480px,100%);background:#FDF0EA;color:#321525;border:2px solid #321525;border-radius:28px;box-shadow:10px 10px 0 #A93750;padding:clamp(22px,4vw,32px);display:flex;flex-direction:column;gap:14px;">
         <button onClick="{{ wlClose }}" aria-label="Close" style="position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1.5px solid #321525;background:#FFFDFD;color:#321525;font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;">×</button>
         <sc-if value="{{ wlForm }}" hint-placeholder-val="{{ true }}">
           <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ {{ wlSrc }}</span>
           <div role="heading" aria-level="2" style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(28px,4vw,38px);line-height:1.02;letter-spacing:-.045em;">Join the Bangalore beta</div>
-          <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;">Blindly is currently in invite-only beta in Bangalore. Enter your phone number or email to receive your direct install link and beta access.</p>
-          <div style="background:#FFFDFD;border:1.5px solid #321525;border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.45;color:#321525;">
-            <span style="font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A93750;">How installation &amp; access works</span>
-            <span><strong>1. Request access:</strong> Leave your WhatsApp number or email below.</span>
-            <span><strong>2. Install the app:</strong> Get a direct download link for <strong>iOS (TestFlight)</strong> or <strong>Android (Google Play Beta)</strong>.</span>
-            <span><strong>3. Go blind:</strong> Sign in with your invited number/email to unlock the Bangalore beta.</span>
-          </div>
-          <form onSubmit="{{ wlSubmit }}" style="display:flex;flex-direction:column;gap:10px;">
-            <input value="{{ wlInput }}" onChange="{{ wlOnInput }}" aria-label="Phone number or email" placeholder="WhatsApp phone number or email" style="width:100%;height:54px;border-radius:16px;border:2px solid #321525;background:#FFFDFD;color:#321525;padding:0 18px;font-family:'Poppins',sans-serif;font-size:16px;outline:none;" style-focus="border-color:#A93750;box-shadow:0 0 0 4px rgba(169,55,80,.18);">
+          <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;">Blindly is in invite-only beta in Bangalore. Tell us a little about you and where to send your invite.</p>
+          <form onSubmit="{{ wlSubmit }}" style="display:flex;flex-direction:column;gap:12px;">
+            <div role="radiogroup" aria-label="Gender" style="display:flex;flex-direction:column;gap:8px;">
+              <span style="font-family:'Poppins',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A93750;">I identify as</span>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+                <button type="button" role="radio" aria-checked="{{ wlGWomanOn }}" onClick="{{ wlPickWoman }}" style="height:48px;padding:0 8px;white-space:nowrap;border-radius:999px;border:2px solid #321525;background:{{ wlGWomanBg }};color:{{ wlGWomanInk }};box-shadow:{{ wlGWomanShadow }};font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease;">Woman</button>
+                <button type="button" role="radio" aria-checked="{{ wlGManOn }}" onClick="{{ wlPickMan }}" style="height:48px;padding:0 8px;white-space:nowrap;border-radius:999px;border:2px solid #321525;background:{{ wlGManBg }};color:{{ wlGManInk }};box-shadow:{{ wlGManShadow }};font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease;">Man</button>
+                <button type="button" role="radio" aria-checked="{{ wlGNbOn }}" onClick="{{ wlPickNb }}" style="height:48px;padding:0 8px;white-space:nowrap;border-radius:999px;border:2px solid #321525;background:{{ wlGNbBg }};color:{{ wlGNbInk }};box-shadow:{{ wlGNbShadow }};font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:background-color .15s ease,box-shadow .15s ease;">Non-binary</button>
+              </div>
+            </div>
+            <input value="{{ wlInput }}" onChange="{{ wlOnInput }}" aria-label="WhatsApp number or email" placeholder="WhatsApp number or email" autocomplete="on" style="width:100%;height:54px;border-radius:16px;border:2px solid #321525;background:#FFFDFD;color:#321525;padding:0 18px;font-family:'Poppins',sans-serif;font-size:16px;outline:none;" style-focus="border-color:#A93750;box-shadow:0 0 0 4px rgba(169,55,80,.18);">
             <input name="b_hp_check" value="{{ wlHp }}" onChange="{{ wlOnHp }}" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;opacity:0;pointer-events:none;left:-9999px;width:1px;height:1px;">
             <sc-if value="{{ wlHasErr }}" hint-placeholder-val="{{ false }}"><span style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#A93750;">{{ wlErr }}</span></sc-if>
             <button type="submit" style="height:54px;border-radius:999px;border:2px solid #321525;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #A93750;transition:transform .25s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:translateY(-2px);">{{ wlBtn }}</button>
@@ -150,11 +152,19 @@ sc-if[value="{{ wlHasErr }}"] {
           <span style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.5;color:#7A4A5E;">By joining, you agree to receive your beta install link &amp; access updates. See our <a href="/privacy" style="color:#A93750;font-weight:600;text-decoration:underline;">Privacy Policy</a>. No spam.</span>
         </sc-if>
         <sc-if value="{{ wlDone }}" hint-placeholder-val="{{ false }}">
-          <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ beta spot reserved</span>
-          <span style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:#A93750;">Your Bangalore beta queue number</span>
-          <span style="font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(64px,12vw,96px);line-height:.9;letter-spacing:-.06em;color:#321525;font-variant-numeric:tabular-nums;">#{{ wlNum }}</span>
-          <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;">We'll send your direct <strong>iOS (TestFlight)</strong> &amp; <strong>Android (Google Play Beta)</strong> install link and access invite to <strong style="font-weight:700;">{{ wlContact }}</strong> as the next Bangalore batch opens.</p>
-          <button onClick="{{ wlClose }}" style="height:52px;border-radius:999px;border:2px solid #321525;background:#FFD86B;color:#321525;font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;cursor:pointer;box-shadow:4px 4px 0 #321525;">Done</button>
+          <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ you're in</span>
+          <div role="heading" aria-level="2" style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.4vw,40px);line-height:1;letter-spacing:-.045em;">Thank you! <span style="color:#A93750;">See you on the other side.</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#FFFDFD;border:2px dashed #321525;border-radius:18px;padding:12px 16px;">
+            <span style="display:flex;flex-direction:column;gap:2px;min-width:0;font-family:'Poppins',sans-serif;font-size:13px;line-height:1.4;"><strong style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A93750;">Your beta spot</strong><span style="overflow-wrap:anywhere;">Invite goes to <strong>{{ wlContact }}</strong></span></span>
+            <span style="flex:none;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(34px,6vw,44px);line-height:1;letter-spacing:-.05em;color:#321525;font-variant-numeric:tabular-nums;">#{{ wlNum }}</span>
+          </div>
+          <div style="position:relative;margin-top:8px;background:#321525;color:#FDF0EA;border-radius:22px;padding:24px 18px 18px;box-shadow:5px 5px 0 #A93750;display:flex;flex-direction:column;gap:12px;">
+            <span style="position:absolute;top:-14px;left:16px;transform:rotate(-4deg);background:#FFD86B;color:#321525;border:2px solid #321525;border-radius:8px;padding:4px 11px;font-family:'Poppins',sans-serif;font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;">⚡ Jump the line</span>
+            <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;">Can't wait for your batch? Send us a quick hi on WhatsApp and we'll move you up the queue. Your message is already written, just hit send.</p>
+            <a href="{{ wlWaHref }}" target="_blank" rel="noopener" onClick="{{ wlWaClick }}" style="height:54px;border-radius:999px;background:#25D366;color:#072B14;border:2px solid #FDF0EA;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 12px;white-space:nowrap;font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(14px,4.2vw,16px);transition:transform .25s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:translateY(-2px);color:#072B14;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.08c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.66-.17 1.33Z"/></svg>Message us on WhatsApp</a>
+            <span style="text-align:center;font-family:'Poppins',sans-serif;font-size:12.5px;color:rgba(253,240,234,.72);">WhatsApp +91 77950 20428</span>
+          </div>
+          <button onClick="{{ wlClose }}" style="align-self:center;height:40px;padding:0 18px;border:0;background:transparent;color:#321525;font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;">Maybe later</button>
         </sc-if>
       </div>
     </div>
@@ -1272,7 +1282,7 @@ class Component extends DCLogic {
     this.requestGps();
     const saved = this.wlSaved();
     (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_opened', { source: src, already_joined: !!saved }));
-    this.setState({ wlOpen: true, wlSrc: src, wlErr: '', wlInput: '', wlHp: '', wlOpenTime: Date.now(), wlDoneData: saved });
+    this.setState({ wlOpen: true, wlSrc: src, wlErr: '', wlInput: '', wlGender: '', wlHp: '', wlOpenTime: Date.now(), wlDoneData: saved });
     if (this.lenis) this.lenis.stop();
     document.documentElement.style.overflow = 'hidden';
   }
@@ -1290,8 +1300,10 @@ class Component extends DCLogic {
     e.preventDefault();
     if (this.state.wlBusy) return;
     const v = (this.state.wlInput || '').trim();
+    const gender = this.state.wlGender || '';
     const email = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     const phone = /^\d{10,13}$/.test(v.replace(/[\s()+-]/g, ''));
+    if (!gender) { this.setState({ wlErr: 'Pick how you identify first.' }); return; }
     if (!email && !phone) { this.setState({ wlErr: 'Enter a valid phone number or email.' }); return; }
     const url = (this.props.waitlistEndpoint || '/api/waitlist').trim();
     if (!url) { this.setState({ wlErr: 'Waitlist is not connected yet. Add the Google Sheet URL in Tweaks.' }); return; }
@@ -1300,6 +1312,7 @@ class Component extends DCLogic {
     const locString = geo.location || [geo.city, geo.region, geo.country].filter(Boolean).join(', ') || '';
     const payload = {
       contact: v,
+      gender,
       b_hp_check: this.state.wlHp || '',
       openTime: this.state.wlOpenTime || 0,
       source: this.state.wlSrc || '',
@@ -1326,7 +1339,7 @@ class Component extends DCLogic {
     // Calculate optimistic waitlist number
     const existingStored = this.wlSaved();
     const estNum = (existingStored && existingStored.contact === v && existingStored.num) ? existingStored.num : (4236 + Math.floor(Math.random() * 5));
-    const initialData = { contact: v, num: estNum, location: locString, city: geo.city || '' };
+    const initialData = { contact: v, gender, num: estNum, location: locString, city: geo.city || '' };
 
     // INSTANT FEEDBACK (< 50ms): Show confirmation card right away!
     this.setState({ wlDoneData: initialData, wlBusy: false, wlErr: '' });
@@ -1363,7 +1376,7 @@ class Component extends DCLogic {
       }
 
       if (out && out.ok && out.num) {
-        const confirmedData = { contact: v, num: Number(out.num), location: locString, city: geo.city || '' };
+        const confirmedData = { contact: v, gender, num: Number(out.num), location: locString, city: geo.city || '' };
         try { localStorage.setItem(this.wlKey, JSON.stringify(confirmedData)); } catch (_) {}
         this.setState({ wlDoneData: confirmedData });
         (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_joined', {
@@ -1390,6 +1403,20 @@ class Component extends DCLogic {
       wlOnHp: (e) => this.setState({ wlHp: e.target.value }),
       wlNum: d ? d.num.toLocaleString('en-IN') : '', wlContact: d ? d.contact : '',
       wlOnInput: (e) => this.setState({ wlInput: e.target.value, wlErr: '' }),
+      wlGender: st.wlGender || '',
+      ...['Woman', 'Man', 'Nb'].reduce((o, k) => {
+        const g = k === 'Nb' ? 'Non-binary' : k;
+        const on = st.wlGender === g;
+        o['wlG' + k + 'On'] = on ? 'true' : 'false';
+        o['wlG' + k + 'Bg'] = on ? '#321525' : '#FFFDFD';
+        o['wlG' + k + 'Ink'] = on ? '#FDF0EA' : '#321525';
+        o['wlG' + k + 'Shadow'] = on ? '3px 3px 0 #A93750' : 'none';
+        o['wlPick' + k] = () => this.setState({ wlGender: g, wlErr: '' });
+        return o;
+      }, {}),
+      wlWaHref: 'https://wa.me/917795020428?text=' + encodeURIComponent(
+        "Hi Blindly! 👋 I just joined the Bangalore beta waitlist" + (d ? ' (#' + d.num + ')' : '') + " and I'd love to jump the line."),
+      wlWaClick: () => (window.posthog && window.posthog.capture && window.posthog.capture('waitlist_whatsapp_clicked', { waitlist_number: d ? d.num : null })),
       wlSubmit: (e) => this.submitWL(e),
       wlClose: () => this.closeWL(),
       wlStop: (e) => e.stopPropagation(),
