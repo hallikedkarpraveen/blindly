@@ -79,6 +79,12 @@ summary::-webkit-details-marker{display:none}
 details[open] [data-plus]{transform:rotate(45deg)}
 [data-secnav]{display:none!important;visibility:hidden!important;pointer-events:none!important;}
 x-dc{display:block;}
+@keyframes wlPop{0%{opacity:0;transform:rotate(-9deg) scale(.6);}100%{opacity:1;transform:rotate(-2deg) scale(1);}}
+@keyframes wlTwinkle{0%,100%{transform:scale(1) rotate(0);}50%{transform:scale(1.3) rotate(25deg);}}
+@keyframes wlNudge{0%,84%,100%{transform:translateY(0) rotate(0);}88%{transform:translateY(-3px) rotate(-1.2deg);}92%{transform:translateY(0) rotate(1.2deg);}}
+[data-wa-btn]:hover{transform:translateY(-2px)!important;box-shadow:6px 6px 0 #321525!important;}
+@media (max-width:359px){[data-wa-long]{display:none;}}
+@media (prefers-reduced-motion:reduce){[data-wl-anim]{animation:none!important;}}
 [data-navbar] a:focus-visible,[data-navbar] button:focus-visible{outline:2px solid #A93750;outline-offset:3px;}
 [data-navlinks] a{transition:background-color .2s ease,color .2s ease;}
 [data-navlinks] a:hover{background:#F6CBCE;color:#321525!important;}
@@ -152,19 +158,28 @@ sc-if[value="{{ wlHasErr }}"] {
           <span style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.5;color:#7A4A5E;">By joining, you agree to receive your beta install link &amp; access updates. See our <a href="/privacy" style="color:#A93750;font-weight:600;text-decoration:underline;">Privacy Policy</a>. No spam.</span>
         </sc-if>
         <sc-if value="{{ wlDone }}" hint-placeholder-val="{{ false }}">
-          <span style="align-self:flex-start;transform:rotate(-3deg);background:#FFD86B;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ you're in</span>
-          <div role="heading" aria-level="2" style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.4vw,40px);line-height:1;letter-spacing:-.045em;">Thank you! <span style="color:#A93750;">See you on the other side.</span></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:#FFFDFD;border:2px dashed #321525;border-radius:18px;padding:12px 16px;">
-            <span style="display:flex;flex-direction:column;gap:2px;min-width:0;font-family:'Poppins',sans-serif;font-size:13px;line-height:1.4;"><strong style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#A93750;">Your beta spot</strong><span style="overflow-wrap:anywhere;">Invite goes to <strong>{{ wlContact }}</strong></span></span>
-            <span style="flex:none;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(34px,6vw,44px);line-height:1;letter-spacing:-.05em;color:#321525;font-variant-numeric:tabular-nums;">#{{ wlNum }}</span>
+          <span style="align-self:flex-start;transform:rotate(-3deg);background:#F498AA;color:#321525;border:2px solid #321525;box-shadow:3px 3px 0 #321525;border-radius:999px;padding:5px 13px;font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;">✦ thank you!</span>
+          <div role="heading" aria-level="2" style="margin:0;font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(40px,7vw,56px);line-height:.95;letter-spacing:-.05em;">You're <span style="color:#A93750;">in.</span></div>
+          <div style="position:relative;margin:6px 6px 10px;">
+            <span data-wl-anim aria-hidden="true" style="position:absolute;z-index:2;right:-6px;top:-16px;font-size:30px;line-height:1;color:#FFD86B;-webkit-text-stroke:2px #321525;animation:wlTwinkle 2.4s ease-in-out infinite;">✦</span>
+            <span data-wl-anim aria-hidden="true" style="position:absolute;z-index:2;left:-8px;bottom:-14px;font-size:20px;line-height:1;color:#F498AA;-webkit-text-stroke:1.5px #321525;animation:wlTwinkle 2.4s ease-in-out .8s infinite;">✦</span>
+            <div data-wl-anim style="display:flex;align-items:stretch;background:#FFD86B;color:#321525;border:2px solid #321525;border-radius:18px;box-shadow:6px 6px 0 #321525;transform:rotate(-2deg);animation:wlPop .6s cubic-bezier(.34,1.56,.64,1) both;">
+              <div style="flex:1;min-width:0;padding:14px 16px 14px 20px;display:flex;flex-direction:column;gap:2px;">
+                <span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;">Bangalore beta · spot</span>
+                <span style="font-family:'Open Sauce One','Plus Jakarta Sans',sans-serif;font-weight:900;font-size:clamp(50px,12vw,72px);line-height:.95;letter-spacing:-.06em;font-variant-numeric:tabular-nums;">#{{ wlNum }}</span>
+                <span style="font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;opacity:.75;overflow-wrap:anywhere;">→ {{ wlContact }}</span>
+              </div>
+              <div aria-hidden="true" style="position:relative;flex:none;width:58px;border-left:2px dashed #321525;display:flex;align-items:center;justify-content:center;">
+                <span style="position:absolute;left:-11px;width:20px;height:20px;border-radius:50%;background:#FDF0EA;top:-12px;"></span><span style="position:absolute;left:-11px;width:20px;height:20px;border-radius:50%;background:#FDF0EA;bottom:-12px;"></span>
+                <span style="writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Poppins',sans-serif;font-weight:800;font-size:12px;letter-spacing:.24em;">ADMIT ONE</span>
+              </div>
+            </div>
           </div>
-          <div style="position:relative;margin-top:8px;background:#321525;color:#FDF0EA;border-radius:22px;padding:24px 18px 18px;box-shadow:5px 5px 0 #A93750;display:flex;flex-direction:column;gap:12px;">
-            <span style="position:absolute;top:-14px;left:16px;transform:rotate(-4deg);background:#FFD86B;color:#321525;border:2px solid #321525;border-radius:8px;padding:4px 11px;font-family:'Poppins',sans-serif;font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;">⚡ Jump the line</span>
-            <p style="margin:0;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;">Can't wait for your batch? Send us a quick hi on WhatsApp and we'll move you up the queue. Your message is already written, just hit send.</p>
-            <a href="{{ wlWaHref }}" target="_blank" rel="noopener" onClick="{{ wlWaClick }}" style="height:54px;border-radius:999px;background:#25D366;color:#072B14;border:2px solid #FDF0EA;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 12px;white-space:nowrap;font-family:'Poppins',sans-serif;font-weight:700;font-size:clamp(14px,4.2vw,16px);transition:transform .25s cubic-bezier(.34,1.56,.64,1);" style-hover="transform:translateY(-2px);color:#072B14;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.08c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.66-.17 1.33Z"/></svg>Message us on WhatsApp</a>
-            <span style="text-align:center;font-family:'Poppins',sans-serif;font-size:12.5px;color:rgba(253,240,234,.72);">WhatsApp +91 77950 20428</span>
+          <div style="position:relative;margin-top:8px;">
+            <span style="position:absolute;z-index:1;top:-14px;right:12px;transform:rotate(5deg);background:#FFD86B;color:#321525;border:2px solid #321525;border-radius:8px;padding:3px 10px;font-family:'Poppins',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;pointer-events:none;">skip the queue</span>
+            <a data-wa-btn data-wl-anim href="{{ wlWaHref }}" target="_blank" rel="noopener" onClick="{{ wlWaClick }}" style="height:62px;border-radius:999px;background:#25D366;color:#072B14;border:2px solid #321525;box-shadow:4px 4px 0 #321525;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 14px;white-space:nowrap;font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(15px,4.4vw,17px);transition:transform .2s ease,box-shadow .2s ease;animation:wlNudge 3.6s ease-in-out 1.2s infinite;" style-hover="color:#072B14;"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.08c-.24.68-1.42 1.3-1.95 1.35-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.92-4.66-4.1-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.9 1.05.93 1.93 1.22 2.2 1.36.27.14.43.12.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.66-.17 1.33Z"/></svg><span>Jump the line<span data-wa-long> on WhatsApp</span></span></a>
           </div>
-          <button onClick="{{ wlClose }}" style="align-self:center;height:40px;padding:0 18px;border:0;background:transparent;color:#321525;font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;">Maybe later</button>
+          <span style="text-align:center;font-family:'Poppins',sans-serif;font-size:12px;color:#7A4A5E;">One tap · message pre-written · <span style="white-space:nowrap;">+91 77950 20428</span></span>
         </sc-if>
       </div>
     </div>
