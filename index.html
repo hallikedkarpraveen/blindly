@@ -79,6 +79,17 @@ summary::-webkit-details-marker{display:none}
 details[open] [data-plus]{transform:rotate(45deg)}
 [data-secnav]{display:none!important;visibility:hidden!important;pointer-events:none!important;}
 x-dc{display:block;}
+[data-navbar] a:focus-visible,[data-navbar] button:focus-visible{outline:2px solid #A93750;outline-offset:3px;}
+[data-navlinks] a{transition:background-color .2s ease,color .2s ease;}
+[data-navlinks] a:hover{background:#F6CBCE;color:#321525!important;}
+[data-navcta]{transition:background-color .2s ease,transform .2s ease;}
+[data-navcta]:hover{background:#A93750!important;color:#FFFDFD!important;}
+[data-navcta]:hover span[aria-hidden]{transform:translateX(3px);}
+[data-navcta] span[aria-hidden]{display:inline-block;transition:transform .2s ease;}
+[data-nav-narrow]{display:none;}
+@media (max-width:389px){[data-nav-wide]{display:none;}[data-nav-narrow]{display:inline;}}
+@media (max-width:359px){header[data-navwrap]{padding-left:12px!important;padding-right:12px!important;}[data-navbar] a[href="#waitlist"]{padding:0 11px!important;}}
+@media (max-width:1023px){[data-navlinks] a{padding:8px 10px!important;}[data-navcta-long]{display:none;}}
 sc-if{display:contents;}
 helmet,sc-for,
 sc-if[hint-placeholder-val="{{ false }}"],
@@ -152,31 +163,33 @@ sc-if[value="{{ wlHasErr }}"] {
   <div data-grain="1" style="position:fixed;inset:-60px;z-index:98;pointer-events:none;opacity:.32;mix-blend-mode:multiply;background-size:220px 220px;will-change:transform;"></div>
 
   <section id="top" data-screen-label="01 Hero" style="position:relative;min-height:100vh;background:#FDF0EA;color:#321525;overflow:hidden;display:flex;flex-direction:column;">
-    <header style="position:relative;z-index:5;width:100%;max-width:1360px;margin:0 auto;padding:18px clamp(16px,3vw,40px);display:flex;align-items:center;gap:clamp(12px,2vw,28px);">
+    <header data-navwrap style="position:relative;z-index:5;width:100%;max-width:1360px;margin:0 auto;padding:16px clamp(16px,3vw,40px) 0;">
+      <div data-navbar="1" style="display:flex;align-items:center;gap:clamp(8px,2vw,24px);min-height:60px;background:rgba(255,253,253,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:2px solid #321525;border-radius:999px;box-shadow:4px 4px 0 #321525;padding:6px 6px 6px clamp(14px,2vw,22px);">
       <a href="/" aria-label="Blindly home" style="display:flex;align-items:center;gap:8px;color:#321525;flex:none;">
         <svg width="24" height="30" viewBox="345 318 332 428" aria-hidden="true" style="display:block;flex:none;"><defs><linearGradient id="hdrHeartL" x1="0" y1="0" x2=".35" y2="1"><stop offset="0" stop-color="#F5C4B2"></stop><stop offset="1" stop-color="#E4737F"></stop></linearGradient><linearGradient id="hdrHeartR" x1=".6" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#C4445F"></stop><stop offset="1" stop-color="#8F2742"></stop></linearGradient></defs><path d="M512 740 C 430 680 355 590 352 455 C 350 362 385 322 422 322 C 455 322 477 344 482 380 C 499 480 511 600 512 740 Z" fill="url(#hdrHeartL)"></path><path d="M512 740 C 513 600 525 480 542 382 C 548 345 571 322 602 322 C 640 322 672 362 672 455 C 669 590 594 680 512 740 Z" fill="url(#hdrHeartR)"></path></svg>
         <span style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:23px;line-height:1;letter-spacing:-.05em;color:#321525;">blind<span style="color:#A93750;">ly</span><sup style="font-family:'Poppins',sans-serif;font-weight:600;font-size:9px;letter-spacing:0;vertical-align:super;margin-left:1px;">™</sup></span>
       </a>
       <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
-      <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#F6CBCE;border-radius:4px;padding:10px clamp(14px,2vw,24px);">
-        <nav style="display:flex;gap:clamp(14px,2.6vw,40px);flex-wrap:wrap;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;margin:0 auto;">
-          <a href="#product" style="color:#321525;" style-hover="color:#A93750;">How it works</a>
-          <a href="#why" style="color:#321525;" style-hover="color:#A93750;">Why Blindly</a>
-          <a href="#stories" style="color:#321525;" style-hover="color:#A93750;">Moods</a>
-          <a href="#meet" style="color:#321525;" style-hover="color:#A93750;">Stories</a>
+      <div style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <nav data-navlinks="1" aria-label="Primary" style="display:flex;align-items:center;gap:2px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;margin:0 auto;">
+          <a href="#product" style="color:#321525;padding:9px 16px;border-radius:999px;white-space:nowrap;">How it works</a>
+          <a href="#why" style="color:#321525;padding:9px 16px;border-radius:999px;white-space:nowrap;">Why Blindly</a>
+          <a href="#stories" style="color:#321525;padding:9px 16px;border-radius:999px;white-space:nowrap;">Moods</a>
+          <a href="#meet" style="color:#321525;padding:9px 16px;border-radius:999px;white-space:nowrap;">Stories</a>
         </nav>
-        <a data-wl="Bangalore Beta" href="#meet" style="background:#FFFDFD;color:#321525;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;display:flex;align-items:center;gap:6px;" style-hover="background:#321525;color:#FFFDFD;">Join the Bangalore beta <span>→</span></a>
+        <a data-wl="Bangalore Beta" data-navcta="1" href="#meet" style="flex:none;height:46px;background:#321525;color:#FFFDFD;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;padding:0 20px 0 22px;border-radius:999px;display:flex;align-items:center;gap:8px;white-space:nowrap;"><span>Join the <span data-navcta-long>Bangalore </span>beta</span><span aria-hidden="true">→</span></a>
       </div>
       </sc-if>
       <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
-          <a data-wl="Bangalore Beta" href="#waitlist" style="height:44px;display:flex;align-items:center;padding:0 18px;border-radius:999px;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;" style-hover="color:#FDF0EA;">Bangalore beta</a>
-          <button onClick="{{ menuToggle }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="width:44px;height:44px;border-radius:50%;border:2px solid #321525;background:#F6CBCE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0;">
+        <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+          <a data-wl="Bangalore Beta" href="#waitlist" style="height:44px;display:flex;align-items:center;padding:0 14px;border-radius:999px;background:#321525;color:#FDF0EA;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;white-space:nowrap;" style-hover="color:#FDF0EA;"><span data-nav-wide>Bangalore beta</span><span data-nav-narrow>Join beta</span></a>
+          <button onClick="{{ menuToggle }}" aria-label="Open menu" aria-expanded="{{ menuOpen }}" style="flex:none;width:44px;height:44px;border-radius:50%;border:0;background:#F6CBCE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0;">
             <span style="display:block;width:18px;height:2px;border-radius:2px;background:#321525;"></span>
             <span style="display:block;width:18px;height:2px;border-radius:2px;background:#321525;"></span>
           </button>
         </div>
       </sc-if>
+      </div>
     </header>
 
     <main id="main-content">
