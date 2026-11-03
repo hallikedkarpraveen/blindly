@@ -33,6 +33,10 @@
       "destination": "https://velvet-backend-fvpw.onrender.com/r/:code"
     },
     {
+      "source": "/beta",
+      "destination": "/beta.html"
+    },
+    {
       "source": "/support",
       "destination": "/support.html"
     },
